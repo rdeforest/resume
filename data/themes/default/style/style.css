@@ -62,11 +62,11 @@ h3 {
 }
 
 #positions {
-  margin-top: 2em;
+  margin-top: 4em;
   display: grid;
   grid: auto / 25% auto;
   grid-column-gap: 1em;
-  grid-row-gap: 2em;
+  grid-row-gap: 4em;
 }
 
 .particulars .where {
