@@ -1,8 +1,19 @@
-express = require('express')
-router = express.Router()
+fs      = require 'fs'
+
+express = require 'express'
+YAML    = require 'js-yaml'
+
+router  = express.Router()
+
+pug = require 'pug'
 
 router.get '/:format', (req, res, next) ->
-  resume     = require '../data/projects/resume.coffee'
+  config     = res.app.get 'config'
+  resume     = Object.assign {},
+    filename: config.template,
+    YAML.safeLoad fs.readFileSync config.data
+
+  template   = fs.readFileSync config.template
   { format } = req.params
 
   switch format

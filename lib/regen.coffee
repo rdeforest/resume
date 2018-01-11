@@ -14,7 +14,6 @@ Throbber   =  lib 'throbber'
 configFile = resolve envroot, 'config.yaml'
 
 
-
 log JSON.stringify {envroot, configFile}
 
 configDefaults =

@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 
+require('coffeescript').register();
 var app = require('../app');
 var debug = require('debug')('resume:server');
 var http = require('http');

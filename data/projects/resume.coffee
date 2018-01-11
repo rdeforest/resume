@@ -13,9 +13,9 @@ resume =
     email: "robert@defore.st"
 
   intro: '''
-      An idealist with majestic dreams seeks real-world experiences by which
-      to claw ever closer to a world in which humans only refine wheels
-      rather than re-inventing them, to the benefit of all.
+      Idealist seeks real-world experiences by which to claw ever closer to a
+      world in which humans collaboratively refine rather than re-invent
+      wheels, to the benefit of all.
     '''
 
   keywords:
@@ -30,6 +30,9 @@ resume =
       title: "System Engineer II"
       from: "2015", to: "Present"
 
+      summary: '''
+      '''
+
       delivered: [
         "Co-founded the DDoS Response Team"
         "Built DDoS detection stack in four regions"
@@ -40,6 +43,9 @@ resume =
     job
       group: "Payments System Operations"
       from: "2012", to: "2015"
+
+      summary: '''
+      '''
 
       delivered: [
         "Supported Mobile Payments project", [
@@ -64,6 +70,9 @@ resume =
       title: "DataFax Administrator"
       from: "2010", to: "2012"
 
+      summary: '''
+      '''
+
       delivered: [
         "Performed a major software upgrade", [
           "Refactored code defining clinical trial forms"
@@ -80,6 +89,9 @@ resume =
       title: "SysOps Specialist III"
       from: "May 2002", to: "May 2010"
 
+      summary: '''
+      '''
+
       delivered: [
         "Supported engineers and content producers of the many Disney web properties such as ABC News and ESPN"
         "Assisted in migration from internally-developed Java servlet engines to Apache Tomcat"
@@ -95,6 +107,9 @@ resume =
       group: "Santa Cruz, CA"
       title: "Tech lead, sysadmin, etc."
       from: "1996", to: "2002"
+
+      summary: '''
+      '''
 
       delivered: [
         "Desktop/server/network/hardware operations for", [

@@ -24,8 +24,13 @@ If you want to serve the result up at http://localhost:3000
 
 # Todo
 
-- Make regen.coffee use inotify instead of re-hashing the source files
-  repeatedly.
-- Refactor to integrate better with Express
-- Add tests
- - And make them pass
+- Add tests and make them pass
+- Use Chokidar to detect file changes in lib/regen
+- Integrate better with Express
+- Add more formats
+  - Markdown
+  - PostScript
+  - PDF
+  - LaTeX?
+- Improve quality of project (add Cakefile, etc)
+

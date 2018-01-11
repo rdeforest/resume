@@ -9,9 +9,14 @@ resume       = require './routes/resume'
 
 app          = express()
 
-# view engine setup
 app.set 'views',       path.join(__dirname, 'views')
 app.set 'view engine', 'pug'
+
+config = new (require './lib/config') {envroot}
+  .load 'config.yaml'
+
+app.set 'envroot',     envroot = __dirname
+app.set 'config',      config
 
 app.use logger('dev')
 app.use bodyParser.json()
