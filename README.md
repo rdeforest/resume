@@ -18,7 +18,7 @@ If you want to tinker with it:
 - Edit config.yaml and the contents of data/ to suit your purpose.
 - Run bin/regen
 
-If you want to serve the result up under http://localhost
+If you want to serve the result up at http://localhost:3000
 
 - bin/www
 
