@@ -1,0 +1,5 @@
+---
+name: 'resume'
+options:
+  watch: true
+  destination: public/resume.html
