@@ -9,6 +9,9 @@ getters = (o, namesAndDefs) ->
 module.exports =
 class Throbber
   constructor: (@stages) ->
+    if named = Throbber[@stages]
+      return named
+
     @angle = 0
     spaces = 0
 

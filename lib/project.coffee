@@ -1,13 +1,13 @@
 {env, argv, stdout} =
-process        = require 'process'
-fs             = require 'fs'
-crypto         = require 'crypto'
-path           = require 'path'
+process        =  require 'process'
+fs             =  require 'fs'
+crypto         =  require 'crypto'
+path           =  require 'path'
 
-cs             = require 'coffeescript'
-pug            = require 'pug'
+cs             =  require 'coffeescript'
+pug            =  require 'pug'
 
-{cat, echo}    = require './util'
+{cat, echo}    = (require './util') process.stdout
 
 module.exports =
 class Project

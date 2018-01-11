@@ -1,5 +1,23 @@
 ---
-name: 'resume'
-options:
-  watch: true
-  destination: public/resume.html
+# All of this is optional and matches the defaults, but provided here to
+# document what can be changed.
+
+project:      resume
+theme:        default
+
+watch:        true
+watchSleepMs: 500
+errorSleepMs: 10000
+throbber:     spinner
+
+dataDir:      data
+
+# By default these are derived from 'project'
+projectDir:   data/projects/resume
+data:         data/projects/resume/data.yaml
+destination:  public/resume.html
+
+# And these are derived from 'theme'
+themeDir:     data/themes/default
+template:     data/themes/default/main.pug
+css:          data/themes/default/style/style.css

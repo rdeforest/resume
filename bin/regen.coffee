@@ -1,45 +1,51 @@
-#!/usr/bin/env coffee
-
 { env, argv, stdout } =
-process    = require 'process'
+process    =  require 'process'
+{resolve}  =  require 'path'
 
-{resolve}  = require 'path'
+log        = (require 'debug') 'regen'
 
 envroot    = env.ENVROOT or resolve __dirname, '..'
 lib        = (mod) -> require resolve envroot, 'lib', mod
 
-Project    = lib 'project'
-Throbber   = lib 'throbber'
+Project    =  lib 'project'
+Throbber   =  lib 'throbber'
+{ echo }   = (lib 'util') process.stdout
 
 configFile = resolve envroot, 'config.yaml'
 
+
 console.log {envroot, configFile}
 
-{ watch: watchFlag = '-w' in argv
+configDefaults =
+  project      : 'resume'
+  theme        : 'default'
 
-  project  = 'resume'
-  theme    = 'default'
-  watchSleepMs = 500
-  errorSleepMs = 5000
+  watch        : '-w' in argv
 
-  dataDir, projectDir,  themeDir
-  data,    destination, template, css
-} = (config = new (require '../lib/config') {envroot})
+  watchSleepMs : 500
+  errorSleepMs : 5000
+  throbber     : 'spinner'
 
-config
+{ project, theme
+  watch,   watchSleepMs, errorSleepMs, throbber
+  dataDir, projectDir,   themeDir
+  data,    destination,  template,     css
+} =
+(config = new (require '../lib/config') config)
   .load configFile
-  ._  dataDir:    dataDir    = -> resolve envroot,    'data',
-      projectDir: projectDir = -> resolve dataDir,    'projects', project
-      themeDir:   themeDir   = -> resolve dataDir,    'themes',   theme
+  ._
+    dataDir:     -> resolve envroot,           'data'
+    projectDir:  -> resolve config.dataDir,    'projects', config.project
+    themeDir:    -> resolve config.dataDir,    'themes',   config.theme
 
-      destination:             -> resolve env.HOME,   'Desktop',   project + '.html'
-      data:                    -> resolve projectDir, 'data.yaml'
-      template:                -> resolve themeDir,   'main.pug'
-      css:                     -> resolve themeDir,   'style',     'style.css'
+    data:        -> resolve config.projectDir,             config.project + '.yaml'
+    template:    -> resolve config.themeDir,   'main.pug'
+    css:         -> resolve config.themeDir,   'style',    'style.css'
+    destination: -> resolve envroot,           'public',   config.project + '.html'
 
-project  = new Project {destination, data, template, css}
+project = new Project {destination, data, template, css}
 
-throbber = Throbber.line
+throbber = new Throbber config.throbber
 
 refresh = ->
   {watchSleep, errorSleep} = config
@@ -56,7 +62,7 @@ refresh = ->
 
   echo "#{throbber.throb()}\r"
 
-  if watchFlag
+  if watch
     setTimeout refresh, watchSleep
 
 refresh()

@@ -1,4 +1,4 @@
-module.exports =
+module.exports = (stdout) ->
   cat: (files) ->
     files
       .map (f) ->
@@ -8,5 +8,3 @@ module.exports =
       .join ''
 
   echo: (s) -> stdout.write s
-
-
