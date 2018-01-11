@@ -7,10 +7,7 @@ updates?
 
 # How to use it
 
-If you just want to see my resume, follow one of these:
-
-- [HTML]()
-- [Markdown]()
+If you just want to see my resume, [here it is as HTML](public/resume.html).
 
 If you want to tinker with it:
 
