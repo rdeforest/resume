@@ -3,3 +3,11 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  p My resume comes in multiple formats:
+
+  ul
+    li: a(href='/resume/html') HTML
+    li: a(href='/resume/md')   MarkDown
+    li: a(href='/resume/yaml') YAML
+    li: a(href='/resume/json') JSON

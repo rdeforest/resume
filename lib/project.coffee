@@ -5,21 +5,31 @@ crypto         =  require 'crypto'
 path           =  require 'path'
 
 cs             =  require 'coffeescript'
+YAML           =  require 'js-yaml'
+
 pug            =  require 'pug'
 
 {cat, echo}    = (require './util') process.stdout
 
+log            = (require 'debug') 'Project'
+
 module.exports =
 class Project
-  constructor: ({data: @_dataFile, @template, @css, @dst, @tmp}) ->
-    @tmp ?= @dst + ".new"
+  constructor: ({data: @_dataFile, @template, @destination, @tmp}) ->
+    @tmp ?= @destination + ".new"
     @hash = ''
-    @sources = [@_dataFile, @template, @css]
+    @sources = [@_dataFile, @template]
 
     if not @tmp
       throw new Error 'wat'
 
-  data: -> cs.eval fs.readFileSync @_dataFile, 'utf8'
+  data: ->
+    contents = fs.readFileSync @_dataFile, 'utf8'
+    switch
+      when @_dataFile.endsWith 'coffee' then cs.eval       contents
+      when @_dataFile.endsWith 'yaml'   then YAML.safeLoad contents
+      when @_dataFile.endsWith 'json'   then JSON.parse    contents
+      else throw new Error "Format of file #{@_dataFile} could not be derived from its name"
 
   rehash: ->
     crypto
@@ -31,14 +41,15 @@ class Project
 
   refresh: (newHash = @rehash()) ->
     @hash = newHash
-    template = fs.readFileSync @template
+    template = fs.readFileSync @template, 'utf8'
     options  = Object.assign @data(),
       filename: @template
       pretty:   true
 
+    log JSON.stringify {template, options}
     html = pug.render template, options
     fs.writeFileSync @tmp, html
-    fs.renameSync @tmp, @dst
+    fs.renameSync @tmp, @destination
     @rehash()
 
 

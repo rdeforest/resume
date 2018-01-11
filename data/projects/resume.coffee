@@ -1,4 +1,4 @@
-{ byCommaSpace, prevWithChanges, job } = require '../../../lib/builder'
+{ byCommaSpace, prevWithChanges, job } = require '../../lib/builder'
 
 module.exports =
 resume =
@@ -105,3 +105,6 @@ resume =
       ]
 
   ]
+
+if require.main is module
+  console.log (require 'js-yaml').safeDump resume

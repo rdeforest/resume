@@ -5,7 +5,7 @@
 project:      resume
 theme:        default
 
-watch:        true
+watch:        false
 watchSleepMs: 500
 errorSleepMs: 10000
 throbber:     spinner
@@ -13,11 +13,10 @@ throbber:     spinner
 dataDir:      data
 
 # By default these are derived from 'project'
-projectDir:   data/projects/resume
-data:         data/projects/resume/data.yaml
+projectDir:   data/projects
+data:         data/projects/resume.yaml
 destination:  public/resume.html
 
 # And these are derived from 'theme'
 themeDir:     data/themes/default
 template:     data/themes/default/main.pug
-css:          data/themes/default/style/style.css

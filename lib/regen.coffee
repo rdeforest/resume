@@ -14,22 +14,22 @@ Throbber   =  lib 'throbber'
 configFile = resolve envroot, 'config.yaml'
 
 
-console.log {envroot, configFile}
+
+log JSON.stringify {envroot, configFile}
 
 configDefaults =
   project      : 'resume'
   theme        : 'default'
 
   watch        : '-w' in argv
-
-  watchSleepMs : 500
-  errorSleepMs : 5000
+  watchSleepMs :    500
+  errorSleepMs :  10000
   throbber     : 'spinner'
 
 { project, theme
   watch,   watchSleepMs, errorSleepMs, throbber
   dataDir, projectDir,   themeDir
-  data,    destination,  template,     css
+  data,    destination,  template
 } =
 (config = new (require '../lib/config') config)
   .load configFile
@@ -40,11 +40,9 @@ configDefaults =
 
     data:        -> resolve config.projectDir,             config.project + '.yaml'
     template:    -> resolve config.themeDir,   'main.pug'
-    css:         -> resolve config.themeDir,   'style',    'style.css'
     destination: -> resolve envroot,           'public',   config.project + '.html'
 
-project = new Project {destination, data, template, css}
-
+project  = new Project {destination, data, template}
 throbber = new Throbber config.throbber
 
 refresh = ->

@@ -1,5 +1,6 @@
 #!/bin/bash
 
 export ENVROOT=$(dirname $(dirname $(realpath $0)))
-$ENVROOT/node_modules/coffeescript/bin/coffee ${0}.coffee
+$ENVROOT/node_modules/coffeescript/bin/coffee \
+  $ENVROOT/lib/regen.coffee "$@"
 
