@@ -1,9 +1,16 @@
 express = require('express')
 router = express.Router()
 
-### GET users listing. ###
+router.get '/:format', (req, res, next) ->
+  resume     = require '../data/projects/resume.coffee'
+  { format } = req.params
 
-router.get '/', (req, res, next) ->
-  res.send 'respond with a resource'
+  switch format
+    when 'html' then res.send pug.render template, resume
+    when 'json' then res.send                      resume
+    when 'yaml' then res.send YAML.safeDump        resume
+    #when 'md'   then res.send ...
+
   return
+
 module.exports = router

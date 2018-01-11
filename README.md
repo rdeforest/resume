@@ -5,7 +5,7 @@ demonstrate some of my skills. It does not (yet) demonstrate my System
 Engineering as doing so would will take a lot more time. Watch this space for
 updates?
 
-## How to use it
+# How to use it
 
 If you just want to see my resume, follow one of these:
 
@@ -21,3 +21,11 @@ If you want to tinker with it:
 If you want to serve the result up under http://localhost
 
 - bin/www
+
+# Todo
+
+- Make regen.coffee use inotify instead of re-hashing the source files
+  repeatedly.
+- Refactor to integrate better with Express
+- Add tests
+ - And make them pass
