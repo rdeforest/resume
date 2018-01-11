@@ -91,6 +91,10 @@ h3 {
   margin-bottom: 0em;
 }
 
+.delivered li:before {
+  content: "- "
+}
+
 .delivered li {
   list-style-type: none;
 }

@@ -49,13 +49,13 @@ resume =
 
       delivered: [
         "Supported Mobile Payments project", [
-          "Executed bake-off and made recommendation for DUKPT-capable Hardware Security Modules"
+          "Bake-off and recommendation for DUKPT Hardware Security Modules"
           "Provided operations support and consultation to development teams"
           "Worked with third-party developer to deploy their product on AWS"
         ]
-        "Supported AS/2 file delivery platform used for communication with payment processors", [
-          "Trained teammates on how the AS/2 platform works"
-          "Obtained and renewed application security certification for the AS/2 platform"
+        "Supported AS2 payment processor partner communication system", [
+          "Trained teammates on how the system works"
+          "Obtained and renewed platform security certification"
         ]
         "Regular on-call duties of Payments SysOps", [
           "Troubleshoot payment processor communication problems"
@@ -93,20 +93,20 @@ resume =
       '''
 
       delivered: [
-        "Supported engineers and content producers of the many Disney web properties such as ABC News and ESPN"
-        "Assisted in migration from internally-developed Java servlet engines to Apache Tomcat"
-        "Assisted in launches of the Pirates of the Caribbean and Club Penguin online games"
-        "Wrote 'How To Be Perfect' documentation for reducing human error in operations"
-        "Built out data center expansion after installation of power, cooling and rack cages"
-        "Supported internally developed email marketing platform"
-        "Re-architected platform to reduce cost and increase availability"
+        "Supported engineers and content producers of Disney's web properties"
+        "Assisted in migration from internal Java servlet engines to Tomcat"
+        "Assisted in launches of the Pirates of the Caribbean online game"
+        "Wrote 'How To Be Perfect' document about data center change control"
+        "Installed cabling and servers in newly expanded data center"
+        "Supported internally developed email marketing system"
+        "Re-architected system to reduce cost and increase availability"
       ]
 
     job
       company: "Three small companies"
-      group: "Santa Cruz, CA"
-      title: "Tech lead, sysadmin, etc."
-      from: "1996", to: "2002"
+      group:   "Santa Cruz, CA"
+      title:   "Tech lead, sysadmin, etc."
+      from:    "1996", to: "2002"
 
       summary: '''
       '''
