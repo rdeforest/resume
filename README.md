@@ -7,7 +7,7 @@ updates?
 
 # How to use it
 
-If you just want to see my resume, [here it is as HTML](http://htmlpreview.github.io/https://github.com/rdeforest/resume/blob/master/public/resume.html).
+If you just want to see my resume, [here it is as HTML](http://htmlpreview.github.io/?https://github.com/rdeforest/resume/blob/master/public/resume.html).
 
 If you want to tinker with it:
 
