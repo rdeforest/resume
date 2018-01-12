@@ -7,7 +7,8 @@ mixin recursiveList(l)
         if typeof(item) === 'string'
           li #{item}
         else
-          +recursiveList(item)
+          li
+            +recursiveList(item)
 
 html
   head
@@ -25,7 +26,8 @@ html
 
           div #{addr.street}
           div #{addr.city}, #{addr.state}, #{addr.zip}
-          div: a(href="mailto:#{contact.email}") #{contact.email}
+          - var emailUrl = "mailto:" + contact.email
+          div: a(href=emailUrl) #{contact.email}
 
         div#keywords
           h3 A Few Of My Favorite ...
