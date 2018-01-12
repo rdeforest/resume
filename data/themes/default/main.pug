@@ -1,0 +1,59 @@
+doctype html
+
+mixin recursiveList(l)
+  if l
+    ul
+      each item in l
+        if typeof(item) === 'string'
+          li #{item}
+        else
+          +recursiveList(item)
+
+html
+  head
+    title Resume of #{contact.name}
+    style
+      include ./style/style.css
+
+  body
+    div
+      div#heading
+        div#contact
+          h1= contact.name
+
+          - var addr = contact.addr
+
+          div #{addr.street}
+          div #{addr.city}, #{addr.state}, #{addr.zip}
+          - var emailUrl = "mailto:" + contact.email
+          div: a(href=emailUrl) #{contact.email}
+
+        div#keywords
+          h3 A Few Of My Favorite ...
+
+          div#categories
+            each category, index in keywords
+              div.category
+                div.title #{index}
+
+                each word in category
+                  div #{word}
+
+      div#experience
+        div#positions
+          each job in positions
+            div.position
+              div.particulars
+                div.where #{job.company}
+
+                if job.group
+                  div.who #{job.group}
+
+                if job.title
+                  div.what #{job.title}
+
+                if job.from
+                  div.when #{job.from} - #{job.to}
+
+              div.delivered
+                +recursiveList(job.delivered)
