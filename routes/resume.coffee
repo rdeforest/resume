@@ -17,10 +17,10 @@ formats =
   yaml: converter: YAML.safeDump
   json: converter: (resumé) -> resumé
   html: converter: html = (resumé) ->
-    pugLocals = Object.assign {},
-      resumé
-      filename: config().template
-      pretty: true
+    pugLocals = Object.assign {}, resumé,
+                                  filename: config().template
+                                  format:   config().format
+                                  pretty:   true
 
     pug.render template(), pugLocals
 
@@ -37,23 +37,26 @@ formats =
     extension: 'docx'
     converter: (resumé) -> htmlDocx.asBlob html resumé
 
-sendAs = (format) ->
-  {type, extension, converter} = formats[format]
+send = (res, resumé) ->
+  console.log "conf:", {format} = config()
+  console.log "fmt: ", {type, extension, converter} = formats[format]
 
-  (res, resumé) ->
-    Promise.resolve(converter resumé)
-      .catch (e) -> res.send e
+  Promise.resolve(converter resumé)
+    .catch (e) -> res.send e
 
-      .then (rendered) ->
-        if type
-          res.set 'Content-Type', type
-          res.set """ "Content-Disposition", "attachment; filename="resumé.#{extension}" """.trim()
+    .then (rendered) ->
+      if type
+        res.set 'Content-Type', type
+        res.set """ "Content-Disposition", "attachment; filename="resumé.#{extension}" """.trim()
 
-        res.send rendered
+      res.send rendered
 
 router.get '/:format', (req, res, next) ->
-  resumé = YAML.safeLoad fs.readFileSync config().data
-  sendAs(req.params.format) res, resumé
+  {data} = conf = config()
+
+  resumé = YAML.safeLoad fs.readFileSync data
+  conf.format = req.params.format
+  send res, resumé
   return
 
 module.exports = router

@@ -1,15 +1,21 @@
 body {
-  font-family: "Arial", Verdana, sans-serif;
+  font-family:     "Arial", Verdana, sans-serif;
+  font-size:       8pt;
 
-  /* These don't work in PhantomJS */
-  font-size: 90%;
-  display: flex;
+  margin:          0.3in;
+
+  /* These don't seem to work in PhantomJS */
+  display:         flex;
   justify-content: center;
 }
 
+body.html {
+  font-size: 90%;
+}
+
 body > div {
-  max-width:   8.0in;
-  max-height: 10.5in;
+  max-width:   7.5in;
+  max-height: 10.0in;
 }
 
 h1 {
@@ -102,7 +108,7 @@ div.particulars {
   margin-bottom: 0em;
 }
 
-.delivered li:before {
+.delivered li::before {
   content: "- "
 }
 

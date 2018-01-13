@@ -15,7 +15,8 @@ html
     style
       include ./style/style.css
 
-  body
+  - var classes = [ format ]
+  body(class=classes)
     div
       div#heading
         div#contact
