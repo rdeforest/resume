@@ -9,7 +9,9 @@ pug      = require 'pug'
 htmlDocx = require 'html-docx-js'
 pdf      = require 'html-pdf'
 
-config   = -> (require '../app').config
+config   = ->
+  Object.assign (require '../app').config
+    now: require('moment')().format('YYYY-MM-DD')
 
 template = -> fs.readFileSync config().template
 

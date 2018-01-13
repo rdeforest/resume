@@ -124,3 +124,7 @@ div.particulars {
 .delivered li {
   list-style-type: none;
 }
+
+p#footer {
+  text-align: center;
+}
