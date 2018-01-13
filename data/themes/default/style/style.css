@@ -14,7 +14,7 @@ body.html {
 }
 
 body > div {
-  max-width:   7.5in;
+  max-width:   8.0in;
   max-height: 10.0in;
 }
 
@@ -98,8 +98,8 @@ div.particulars {
 
 .delivered {
   display: inline-block;
-  width: 70%;
-  margin-left: 1em;
+  width: 73%;
+  margin-left: 0.5em;
 }
 
 .delivered ul {

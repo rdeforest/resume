@@ -32,6 +32,7 @@ formats =
         pdf.create html resumé
            .toBuffer (err, buffer) ->
              if err then reject err else resolve buffer
+
   docx:
     type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
     extension: 'docx'
@@ -41,13 +42,13 @@ send = (res, resumé) ->
   console.log "conf:", {format} = config()
   console.log "fmt: ", {type, extension, converter} = formats[format]
 
-  Promise.resolve(converter resumé)
+  Promise.resolve converter resumé
     .catch (e) -> res.send e
 
     .then (rendered) ->
       if type
         res.set 'Content-Type', type
-        res.set """ "Content-Disposition", "attachment; filename="resumé.#{extension}" """.trim()
+        res.set """ "Content-Disposition", "attachment; filename="2018 resumé of Robert de Forest.#{extension}" """.trim()
 
       res.send rendered
 
