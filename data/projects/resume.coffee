@@ -79,7 +79,7 @@ resume =
           "Adapted form code to take new security model into account"
         ]
         "Corrected and back-filled data reporting automation"
-        "Supported developers maintaining in-house applications which integrate with DataFax"
+        "Supported in-house developers of systems extending DataFax"
         "Recovered from infrastructure issue which caused data corruption"
       ]
 
