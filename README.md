@@ -22,12 +22,13 @@ If you want to serve the result up at http://localhost:3000
 # Todo
 
 - Add tests and make them pass
-- Use Chokidar to detect file changes in lib/regen
 - Integrate better with Express
 - Add more formats
   - Markdown
-  - PostScript
-  - PDF
   - LaTeX?
 - Improve quality of project (add Cakefile, etc)
-
+- Decide whether to keep data/projects/\*.yaml
+- Remove references to "resumé" in code.
+  - There's nothing resumé-specific about the code.
+- Include all available styles and projects in the "UI".
+- Port to AWS?
