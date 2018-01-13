@@ -125,6 +125,13 @@ div.particulars {
   list-style-type: none;
 }
 
-p#footer {
-  text-align: center;
+#footer {
+}
+
+#footer div:first-child {
+  float: left;
+}
+
+#footer div:last-child {
+  float: right;
 }

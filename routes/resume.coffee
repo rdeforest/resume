@@ -1,4 +1,5 @@
 fs       = require 'fs'
+path     = require 'path'
 
 express  = require 'express'
 YAML     = require 'js-yaml'
@@ -8,12 +9,21 @@ router   = express.Router()
 pug      = require 'pug'
 htmlDocx = require 'html-docx-js'
 pdf      = require 'html-pdf'
+cs       = require 'coffeescript'
+moment   = require 'moment'
+
+date     = (t) -> moment(t).format 'YYYY-MM-DD'
+
+read     = (f) -> fs.readFileSync(f).toString()
 
 config   = ->
-  Object.assign (require '../app').config
-    now: require('moment')().format('YYYY-MM-DD')
+  conf = (require '../app').config
 
-template = -> fs.readFileSync config().template
+  Object.assign conf,
+    updated:    date fs.statSync conf.data
+    generated:  date()
+
+template = -> read config().template
 
 formats =
   yaml: converter: YAML.safeDump
@@ -21,8 +31,8 @@ formats =
   html: converter: html = (resumé) ->
     pugLocals = Object.assign {}, resumé,
                                   filename: config().template
-                                  format:   config().format
                                   pretty:   true
+                                  config()
 
     pug.render template(), pugLocals
 
@@ -57,7 +67,7 @@ send = (res, resumé) ->
 router.get '/:format', (req, res, next) ->
   {data} = conf = config()
 
-  resumé = YAML.safeLoad fs.readFileSync data
+  resumé = (require path.resolve conf.data) require '../lib/builder'
   conf.format = req.params.format
   send res, resumé
   return

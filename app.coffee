@@ -9,7 +9,7 @@ resume       = require './routes/resume'
 
 app          = express()
 
-app.set 'views',       path.join(__dirname, 'views')
+app.set 'views',       path.join __dirname, 'views'
 app.set 'view engine', 'pug'
 
 app.config =
@@ -18,18 +18,18 @@ config = new (require './lib/config') {envroot}
 
 app.set 'envroot',     envroot = __dirname
 
-app.use logger('dev')
+app.use logger 'dev'
 app.use bodyParser.json()
-app.use bodyParser.urlencoded(extended: false)
+app.use bodyParser.urlencoded extended: false
 app.use cookieParser()
 
-app.use express.static(path.join(__dirname, 'public'))
+app.use express.static path.join __dirname, 'public'
 
 app.use '/', index
 app.use '/resume', resume
 
 app.use (req, res, next) ->
-  err = new Error('Not Found')
+  err = new Error 'Not Found'
   err.status = 404
   next err
   return

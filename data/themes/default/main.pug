@@ -59,6 +59,8 @@ html
               div.delivered
                 +recursiveList(job.delivered)
 
-      p#footer
-        em Generated #{now}
+      - console.log({updated, generated})
+      div#footer
+        div Updated #{updated}
+        div Generated #{generated}
 
