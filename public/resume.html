@@ -3,15 +3,23 @@
   <head>
     <title>Resume of Robert de Forest</title>
     <style>body {
-  display: flex;
+  font-family:     "Arial", Verdana, sans-serif;
+  font-size:       8pt;
+
+  margin:          0.3in;
+
+  /* These don't seem to work in PhantomJS */
+  display:         flex;
   justify-content: center;
-  font-family: sans-serif;
+}
+
+body.html {
   font-size: 90%;
 }
 
 body > div {
-  max-width: 8in;
-  max-height: 10in;
+  max-width:   8.0in;
+  max-height: 10.0in;
 }
 
 h1 {
@@ -33,27 +41,37 @@ h3 {
 }
 
 #keywords {
-  display: inline-block;
-  margin-top: 1em;
-  float: right;
+  display:    inline-block;
+  margin-top: 0em;
+  float:      right;
   text-align: center;
 }
 
-#keywords #categories {
-  text-align: right;
-  margin-top: 1em;
-  margin-left: 1em;
-  display: flex;
+.border {
+  border: solid black 1px;
 }
 
-#categories div {
+#keywords #categories {
+  display:     inline-block;
+  width:       3.6in;
+  text-align:  right;
+  margin-top:  1em;
+  margin-left: 1em;
+}
+
+#categories > div {
+  display: inline-block;
 }
 
 #categories .title {
-  font-size: 111%;
-  font-weight: bold;
-  font-style: italic;
+  font-size:     10pt;
+  font-weight:   bold;
+  font-style:    italic;
   margin-bottom: 0.5em;
+}
+
+.html #categories .title {
+  font-size: 111%;
 }
 
 #keywords .category div {
@@ -66,11 +84,16 @@ h3 {
 }
 
 #positions {
+  margin-top: 0em;
+}
+
+.position {
   margin-top: 2em;
-  display: grid;
-  grid: auto / 25% auto;
-  grid-column-gap: 1em;
-  grid-row-gap: 2em;
+}
+
+div.particulars {
+  float: left;
+  width: 25%;
 }
 
 .particulars .where {
@@ -78,6 +101,9 @@ h3 {
 }
 
 .delivered {
+  display: inline-block;
+  width: 73%;
+  margin-left: 0.5em;
 }
 
 .delivered ul {
@@ -95,20 +121,24 @@ h3 {
   margin-bottom: 0em;
 }
 
+.delivered li::before {
+  content: "- "
+}
+
 .delivered li {
   list-style-type: none;
 }
 
     </style>
   </head>
-  <body>
+  <body class="html">
     <div>
       <div id="heading">
         <div id="contact">
           <h1>Robert de Forest</h1>
           <div>1215 Seneca St #307</div>
           <div>Seattle, WA, 98101</div>
-          <div><a href="mailto:#{contact.email}">robert@defore.st</a></div>
+          <div><a href="mailto:robert@defore.st">robert@defore.st</a></div>
         </div>
         <div id="keywords">
           <h3>A Few Of My Favorite ...</h3>
@@ -139,97 +169,107 @@ h3 {
       </div>
       <div id="experience">
         <div id="positions">
-          <div class="particulars">
-            <div class="where">Amazon.com</div>
-            <div class="who">AWS Perimeter Protection</div>
-            <div class="what">System Engineer II</div>
-            <div class="when">2015 - Present</div>
-          </div>
-          <div class="delivered">
-            <ul>
-              <li>Co-founded the DDoS Response Team</li>
-              <li>Built DDoS detection stack in four regions</li>
-              <li>Partially automated builds, reducing effort by factor of three</li>
-              <li>Covered daytime on call to facilitate team delivery of a new product on time</li>
-            </ul>
-          </div>
-          <div class="particulars">
-            <div class="where">Amazon.com</div>
-            <div class="who">Payments System Operations</div>
-            <div class="what">System Engineer II</div>
-            <div class="when">2012 - 2015</div>
-          </div>
-          <div class="delivered">
-            <ul>
-              <li>Supported Mobile Payments project</li>
+          <div class="position">
+            <div class="particulars">
+              <div class="where">Amazon.com</div>
+              <div class="who">AWS Perimeter Protection</div>
+              <div class="what">System Engineer II</div>
+              <div class="when">2015 - Present</div>
+            </div>
+            <div class="delivered">
               <ul>
-                <li>Executed bake-off and made recommendation for DUKPT-capable Hardware Security Modules</li>
-                <li>Provided operations support and consultation to development teams</li>
-                <li>Worked with third-party developer to deploy their product on AWS</li>
+                <li>Co-founded the DDoS Response Team</li>
+                <li>Built DDoS detection stack in four regions</li>
+                <li>Partially automated builds, reducing effort by factor of three</li>
+                <li>Covered daytime on call to facilitate team delivery of a new product on time</li>
               </ul>
-              <li>Supported AS/2 file delivery platform used for communication with payment processors</li>
+            </div>
+          </div>
+          <div class="position">
+            <div class="particulars">
+              <div class="where">Amazon.com</div>
+              <div class="who">Payments System Operations</div>
+              <div class="what">System Engineer II</div>
+              <div class="when">2012 - 2015</div>
+            </div>
+            <div class="delivered">
               <ul>
-                <li>Trained teammates on how the AS/2 platform works</li>
-                <li>Obtained and renewed application security certification for the AS/2 platform</li>
+                <li>Supported Mobile Payments project</li>
+                <ul>
+                  <li>Bake-off and recommendation for DUKPT Hardware Security Modules</li>
+                  <li>Provided operations support and consultation to development teams</li>
+                  <li>Worked with third-party developer to deploy their product on AWS</li>
+                </ul>
+                <li>Supported AS2 payment processor partner communication system</li>
+                <ul>
+                  <li>Trained teammates on how the system works</li>
+                  <li>Obtained and renewed platform security certification</li>
+                </ul>
+                <li>Regular on-call duties of Payments SysOps</li>
+                <ul>
+                  <li>Troubleshoot payment processor communication problems</li>
+                  <li>Support and advise internal development teams</li>
+                </ul>
+                <li>Co-authored six-pager for moving Payments into AWS</li>
               </ul>
-              <li>Regular on-call duties of Payments SysOps</li>
+            </div>
+          </div>
+          <div class="position">
+            <div class="particulars">
+              <div class="where">Fred Hutch Cancer Research Center</div>
+              <div class="who">SCHARP.org</div>
+              <div class="what">DataFax Administrator</div>
+              <div class="when">2010 - 2012</div>
+            </div>
+            <div class="delivered">
               <ul>
-                <li>Troubleshoot payment processor communication problems</li>
-                <li>Support and advise internal development teams</li>
+                <li>Performed a major software upgrade</li>
+                <ul>
+                  <li>Refactored code defining clinical trial forms</li>
+                  <li>Adapted form code to take new security model into account</li>
+                </ul>
+                <li>Corrected and back-filled data reporting automation</li>
+                <li>Supported in-house developers of systems extending DataFax</li>
+                <li>Recovered from infrastructure issue which caused data corruption</li>
               </ul>
-              <li>Co-authored six-pager for moving Payments into AWS</li>
-            </ul>
+            </div>
           </div>
-          <div class="particulars">
-            <div class="where">Fred Hutch Cancer Research Center</div>
-            <div class="who">SCHARP.org</div>
-            <div class="what">DataFax Administrator</div>
-            <div class="when">2010 - 2012</div>
-          </div>
-          <div class="delivered">
-            <ul>
-              <li>Performed a major software upgrade</li>
+          <div class="position">
+            <div class="particulars">
+              <div class="where">The Walt Disney Internet Group</div>
+              <div class="who">Three different teams</div>
+              <div class="what">SysOps Specialist III</div>
+              <div class="when">May 2002 - May 2010</div>
+            </div>
+            <div class="delivered">
               <ul>
-                <li>Refactored code defining clinical trial forms</li>
-                <li>Adapted form code to take new security model into account</li>
+                <li>Supported engineers and content producers of Disney's web properties</li>
+                <li>Assisted in migration from internal Java servlet engines to Tomcat</li>
+                <li>Assisted in launches of the Pirates of the Caribbean online game</li>
+                <li>Wrote 'How To Be Perfect' document about data center change control</li>
+                <li>Installed cabling and servers in newly expanded data center</li>
+                <li>Supported internally developed email marketing system</li>
+                <li>Re-architected system to reduce cost and increase availability</li>
               </ul>
-              <li>Corrected and back-filled data reporting automation</li>
-              <li>Supported developers maintaining in-house applications which integrate with DataFax</li>
-              <li>Recovered from infrastructure issue which caused data corruption</li>
-            </ul>
+            </div>
           </div>
-          <div class="particulars">
-            <div class="where">The Walt Disney Internet Group</div>
-            <div class="who">Three different teams</div>
-            <div class="what">SysOps Specialist III</div>
-            <div class="when">May 2002 - May 2010</div>
-          </div>
-          <div class="delivered">
-            <ul>
-              <li>Supported engineers and content producers of the many Disney web properties such as ABC News and ESPN</li>
-              <li>Assisted in migration from internally-developed Java servlet engines to Apache Tomcat</li>
-              <li>Assisted in launches of the Pirates of the Caribbean and Club Penguin online games</li>
-              <li>Wrote 'How To Be Perfect' documentation for reducing human error in operations</li>
-              <li>Built out data center expansion after installation of power, cooling and rack cages</li>
-              <li>Supported internally developed email marketing platform</li>
-              <li>Re-architected platform to reduce cost and increase availability</li>
-            </ul>
-          </div>
-          <div class="particulars">
-            <div class="where">Three small companies</div>
-            <div class="who">Santa Cruz, CA</div>
-            <div class="what">Tech lead, sysadmin, etc.</div>
-            <div class="when">1996 - 2002</div>
-          </div>
-          <div class="delivered">
-            <ul>
-              <li>Desktop/server/network/hardware operations for</li>
+          <div class="position">
+            <div class="particulars">
+              <div class="where">Three small companies</div>
+              <div class="who">Santa Cruz, CA</div>
+              <div class="what">Tech lead, sysadmin, etc.</div>
+              <div class="when">1996 - 2002</div>
+            </div>
+            <div class="delivered">
               <ul>
-                <li>Got.net, an ISP with 2500 dial-up and web hosting customers</li>
-                <li>Coast Commercial Bank with six branches</li>
-                <li>Tapestry.net, a dot-com startup with 60 employees</li>
+                <li>Desktop/server/network/hardware operations for</li>
+                <ul>
+                  <li>Got.net, an ISP with 2500 dial-up and web hosting customers</li>
+                  <li>Coast Commercial Bank with six branches</li>
+                  <li>Tapestry.net, a dot-com startup with 60 employees</li>
+                </ul>
               </ul>
-            </ul>
+            </div>
           </div>
         </div>
       </div>
