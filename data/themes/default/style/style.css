@@ -37,17 +37,21 @@ h3 {
 }
 
 #keywords {
-  display: inline-block;
-  margin-top: 1em;
-  float: right;
+  display:    inline-block;
+  margin-top: 0em;
+  float:      right;
   text-align: center;
 }
 
+.border {
+  border: solid black 1px;
+}
+
 #keywords #categories {
-  display: inline-block;
-  width: 4in;
-  text-align: right;
-  margin-top: 1em;
+  display:     inline-block;
+  width:       3.6in;
+  text-align:  right;
+  margin-top:  1em;
   margin-left: 1em;
 }
 
@@ -56,10 +60,14 @@ h3 {
 }
 
 #categories .title {
-  font-size: 111%;
-  font-weight: bold;
-  font-style: italic;
+  font-size:     10pt;
+  font-weight:   bold;
+  font-style:    italic;
   margin-bottom: 0.5em;
+}
+
+.html #categories .title {
+  font-size: 111%;
 }
 
 #keywords .category div {
@@ -72,7 +80,7 @@ h3 {
 }
 
 #positions {
-  margin-top: 4em;
+  margin-top: 0em;
 }
 
 .position {
@@ -90,7 +98,8 @@ div.particulars {
 
 .delivered {
   display: inline-block;
-  width: 74%;
+  width: 70%;
+  margin-left: 1em;
 }
 
 .delivered ul {
