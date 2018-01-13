@@ -39,8 +39,8 @@ formats =
     converter: (resumé) -> htmlDocx.asBlob html resumé
 
 send = (res, resumé) ->
-  console.log "conf:", {format} = config()
-  console.log "fmt: ", {type, extension, converter} = formats[format]
+  {format} = config()
+  {type, extension, converter} = formats[format]
 
   Promise.resolve converter resumé
     .catch (e) -> res.send e
