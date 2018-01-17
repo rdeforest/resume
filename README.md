@@ -25,12 +25,12 @@ If you want to serve the result up at http://localhost:3000
 
 - Add tests and make them pass
 - Integrate better with Express
+  - bin/regen is currently dumb
 - Add more formats
   - Markdown
   - LaTeX?
 - Improve quality of project (add Cakefile, etc)
-- Decide whether to keep data/projects/\*.yaml
 - Remove references to "resumé" in code.
   - There's nothing resumé-specific about the code.
 - Include all available styles and projects in the "UI".
-- Port to AWS?
+- Port to AWS? Or Google Gears?
