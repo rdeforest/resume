@@ -1,26 +1,32 @@
-{sourceFiles} = require './lib/util'
-watcher       = require './lib/watcher'
-debug         = (require 'debug') 'Cakefile'
+debug   = require 'debug'
 
-tasks = (info...) ->
-  while info.length
-    [nameAndDesc, fn, info...] = info
+watcher = require './lib/watcher'
 
-    for name, desc of nameAndDesc
-      debug "Adding task #{name}: #{desc}"
-      task name, desc, fn
+log     = debug 'Cakefile'
 
 option '-w', '--watch', 'Restart/recompile on file change'
 option '-d', '--debug', 'Turn on default debugging'
 
-maybeWatch = (modulePath) ->
+taskDefs =
+  run:  'lib/server': 'Start Express'
+  gen:  'lib/regen':  'Generate static content'
+  test: 'test/all':   'Run test suite'
+
+applyOptions = (modulePath) ->
   (options) ->
-    debug "Task #{modulePath} invoked"
+    log "Task #{modulePath} invoked"
+
+    if options.debug
+      debug.enable '*'
+    else
+      debug.disable()
 
     ((if options.watch then watcher else require) modulePath) options
 
-tasks
-  run:  'Start Express',             maybeWatch 'lib/server'
-  gen:  'Regenerate static content', maybeWatch 'lib/regen'
-  test: 'Run test suite',            maybeWatch 'test/all'
+tasks = (info) ->
+  for name, detail of info
+    for modPath, desc of detail
+      log "Adding task #{name}: #{desc}"
+      task name, desc, applyOptions modPath
 
+tasks taskDefs

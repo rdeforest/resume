@@ -2,20 +2,15 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
 
   p My resume comes in multiple formats:
 
   ul
-    li: a(href='/resume/html') HTML
-    li: a(href='/resume/yaml') YAML
-    li: a(href='/resume/json') JSON
-    li: a(href='/resume/pdf')  PDF
+    each format in formats
+      li: a(href=format.href)= format.name
 
   p And soon...
 
   ul
-    li MarkDown
-    li PostScript
-    li LaTeX (maybe)
-    li DOCX (MS Word)
+    each format in futureFormats
+      li= format.name

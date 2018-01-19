@@ -1,9 +1,12 @@
-express = require('express')
+express = require 'express'
+app = require '../app'
 
 router = express.Router()
 
+formats = require '../lib/formats'
+
 router.get '/', (req, res, next) ->
-  res.render 'index', title: 'Express'
+  res.render 'index', Object.assign formats, title: 'Resume of Robert de Forest'
   return
 
 module.exports = router

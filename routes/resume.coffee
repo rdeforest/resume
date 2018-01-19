@@ -25,30 +25,7 @@ config   = ->
 
 template = -> read config().template
 
-formats =
-  yaml: converter: YAML.safeDump
-  json: converter: (resumé) -> resumé
-  html: converter: html = (resumé) ->
-    pugLocals = Object.assign {}, resumé,
-                                  filename: config().template
-                                  pretty:   true
-                                  config()
-
-    pug.render template(), pugLocals
-
-  pdf:
-    type: 'application/pdf'
-    extension: 'pdf'
-    converter: (resumé) ->
-      new Promise (resolve, reject) ->
-        pdf.create html resumé
-           .toBuffer (err, buffer) ->
-             if err then reject err else resolve buffer
-
-  docx:
-    type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    extension: 'docx'
-    converter: (resumé) -> htmlDocx.asBlob html resumé
+{formats} = require '../lib/formats'
 
 send = (res, resumé) ->
   {format} = config()

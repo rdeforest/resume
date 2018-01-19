@@ -1,4 +1,6 @@
+http   = require 'http'
 debug  = require('debug') 'resume:server'
+app    = require '../app'
 
 class Port
   constructor: (@str) ->
@@ -16,9 +18,6 @@ Object.defineProperties Port::,
 module.exports =
   start = (options) ->
     debug 'Starting server...'
-    app    = require '../app'
-    http   = require 'http'
-
     port = new Port process.env.PORT or '3000'
     app.set 'port', port.value
 

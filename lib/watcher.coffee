@@ -2,6 +2,12 @@ fs = require 'fs'
 
 {sourceFiles, modules} = require './util'
 
+topModule = (child) ->
+  if child.parent
+    topModule child.parent
+  else
+    child
+
 # TODO: run the module in a child process and restart it as needed
 module.exports =
 watcher =
@@ -11,19 +17,18 @@ watcher =
 
     start = exported = watchers = subModule = null
 
-    unloaded = undefined
-    unload = (module) ->
-      debug "unloading #{module.id}"
-      unloaded ?= []
+    unload = (startingModule) ->
+      unloaded = undefined
+      _unload = (module) ->
+        debug "unloading #{module.id}"
+        unloaded ?= []
 
-      for child in modules module
-        if child.id in unloaded
-          throw new Error "Unload loop?"
+        for child in modules topModule module when child?.id not in unloaded
+          unloaded.push child.id
+          _unload child
 
-        unloaded.push child.id
-        unload child
-
-      require.cache[module.id] = undefined
+        require.cache[module.id] = undefined
+      _unload startingModule
       unloaded = undefined
 
     restart = ->

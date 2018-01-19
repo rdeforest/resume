@@ -21,12 +21,8 @@ Object.assign makeVerbs,
 
     module
       .children
-      .concat (
-          module
-            .children
-            .filter ({filename}) -> -1 is filename.indexOf 'node_modules'
-            .map modules.bind null, seen
-        )...
+      .concat (module.children.map modules.bind null, seen)...
+      .filter ({filename}) -> -1 is filename.indexOf 'node_modules'
 
   sourceFiles: sourceFiles = (module) ->
     modules module
