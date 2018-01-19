@@ -8,3 +8,4 @@ module.exports = (stdout) ->
       .join ''
 
   echo: (s) -> stdout.write s
+
