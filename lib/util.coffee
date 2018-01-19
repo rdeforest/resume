@@ -1,4 +1,5 @@
-module.exports = (stdout) ->
+module.exports =
+makeVerbs = (stdout) ->
   cat: (files) ->
     files
       .map (f) ->
@@ -8,18 +9,26 @@ module.exports = (stdout) ->
       .join ''
 
   echo: (s) -> stdout.write s
+
+Object.assign makeVerbs,
   modules: modules = (seen, module) ->
     if arguments.length is 1
-      module = seen
-      seen = []
+      [module, seen] = [seen, []]
     else
-      return [] if module in seen
+      return [] if module.id in seen
 
-    seen.push module
-    [module].concat module.children.map(modules.bind null, seen)...
+    seen.push module.id
+
+    module
+      .children
+      .concat (
+          module
+            .children
+            .filter ({filename}) -> -1 is filename.indexOf 'node_modules'
+            .map modules.bind null, seen
+        )...
 
   sourceFiles: sourceFiles = (module) ->
     modules module
-      .filter ({filename}) -> -1 is filename.indexOf 'node_modules'
       .map ({filename}) -> filename
 
