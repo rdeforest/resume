@@ -1,5 +1,8 @@
 merged  = (entries) -> Object.assign {}, entries...
 
+moduleNames = 'assert fs events path util'.qw
+modules = merged moduleNames.map (mod) -> "#{mod}": require mod
+
 getters = (o, namesAndValues) ->
   defs = Object
     .entries namesAndValues
@@ -10,19 +13,19 @@ getters = (o, namesAndValues) ->
 getters String::,
   qw: get: -> @.split /\s+/
 
-{ env } =
-process = require 'process'
+{ env }    =
+process    = require 'process'
+{ resolve} = require 'path'
 
 env.NODE_PATH =
   env.NODE_PATH.split ':'
-    .concat '../lib'
+    .concat resolve __dirname, '..', 'lib'
     .join ':'
-
-moduleNames = 'assert fs events path util'.qw
 
 env.JOE_REPORTER ?= 'console'
 
 Object.assign global,
               require('joe')
               {process}
-              (moduleNames.map (mod) -> "#{mod}": require mod)...
+              {modules}
+              {getters}
