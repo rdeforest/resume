@@ -124,3 +124,14 @@ div.particulars {
 .delivered li {
   list-style-type: none;
 }
+
+#footer {
+}
+
+#footer div:first-child {
+  float: left;
+}
+
+#footer div:last-child {
+  float: right;
+}

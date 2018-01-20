@@ -1,4 +1,6 @@
-doctype html
+- var bodyClass = [ format ]
+- var addr      = contact.addr
+- var emailUrl  = "mailto:" + contact.email
 
 mixin recursiveList(l)
   if l
@@ -9,24 +11,22 @@ mixin recursiveList(l)
         else
           +recursiveList(item)
 
+doctype html
+
 html
   head
     title Resume of #{contact.name}
     style
       include ./style/style.css
 
-  - var classes = [ format ]
-  body(class=classes)
+  body(class=bodyClass)
     div
       div#heading
         div#contact
           h1= contact.name
 
-          - var addr = contact.addr
-
           div #{addr.street}
           div #{addr.city}, #{addr.state}, #{addr.zip}
-          - var emailUrl = "mailto:" + contact.email
           div: a(href=emailUrl) #{contact.email}
 
         div#keywords
@@ -58,3 +58,9 @@ html
 
               div.delivered
                 +recursiveList(job.delivered)
+
+      - console.log({updated, generated})
+      div#footer
+        div Updated #{updated}
+        div Generated #{generated}
+

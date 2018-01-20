@@ -1,7 +1,11 @@
-{ byCommaSpace, prevWithChanges, job } = require '../../lib/builder'
-
 module.exports =
-resume =
+({ byCommaSpace, prevWithChanges, job }) ->
+  fs     = require 'fs'
+  moment = require 'moment'
+
+  #generated: moment()
+  #updated:   moment fs.statSync(__filename).mtime
+
   contact:
     name: "Robert de Forest"
     addr:
@@ -120,6 +124,3 @@ resume =
       ]
 
   ]
-
-if require.main is module
-  console.log (require 'js-yaml').safeDump resume

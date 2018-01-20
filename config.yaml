@@ -14,7 +14,7 @@ dataDir:      data
 
 # By default these are derived from 'project'
 projectDir:   data/projects
-data:         data/projects/resume.yaml
+data:         data/projects/resume.coffee
 destination:  public/resume.html
 
 # And these are derived from 'theme'
