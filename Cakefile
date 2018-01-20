@@ -1,32 +1,22 @@
+fs      = require 'fs'
+path    = require 'path'
+util    = require 'util'
+
 debug   = require 'debug'
 
-watcher = require './lib/watcher'
-
 log     = debug 'Cakefile'
+
+Task    = (require './lib/task') {task, option}
 
 option '-w', '--watch', 'Restart/recompile on file change'
 option '-d', '--debug', 'Turn on default debugging'
 
-taskDefs =
-  run:  'lib/server': 'Start Express'
-  gen:  'lib/regen':  'Generate static content'
-  test: 'test/all':   'Run test suite'
+fs.readDirSync taskDir = path.resolve __dirname, 'tasks'
+    .filter  (name) -> not name.beginsWith '.'
+    .forEach (name) ->
+      taskModule = require path.resolve taskDir, name
+      taskModule {task, option}
 
-applyOptions = (modulePath) ->
-  (options) ->
-    log "Task #{modulePath} invoked"
-
-    if options.debug
-      debug.enable '*'
-    else
-      debug.disable()
-
-    ((if options.watch then watcher else require) modulePath) options
-
-tasks = (info) ->
-  for name, detail of info
-    for modPath, desc of detail
-      log "Adding task #{name}: #{desc}"
-      task name, desc, applyOptions modPath
-
-tasks taskDefs
+#run:  'lib/server': 'Start Express'
+#gen:  'lib/regen':  'Generate static content'
+#test: 'test/all':   'Run test suite'
