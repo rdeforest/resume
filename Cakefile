@@ -11,12 +11,15 @@ Task    = (require './lib/task') {task, option}
 option '-w', '--watch', 'Restart/recompile on file change'
 option '-d', '--debug', 'Turn on default debugging'
 
-fs.readDirSync taskDir = path.resolve __dirname, 'tasks'
-    .filter  (name) -> not name.beginsWith '.'
-    .forEach (name) ->
-      taskModule = require path.resolve taskDir, name
-      taskModule {task, option}
+taskDir = path.resolve __dirname, 'tasks'
+log "Loading tasks from #{taskDir}"
 
-#run:  'lib/server': 'Start Express'
-#gen:  'lib/regen':  'Generate static content'
-#test: 'test/all':   'Run test suite'
+fs.readdirSync taskDir = taskDir
+    .filter  (name) ->
+      return name is 'run.coffee'
+      not name.startsWith '.'
+      
+    .forEach (name) ->
+      taskPath = path.resolve taskDir, name
+      log "Loading task #{name} from path #{taskPath}"
+      (require taskPath) Task
