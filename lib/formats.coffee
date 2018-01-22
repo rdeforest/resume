@@ -1,7 +1,14 @@
+fs       = require 'fs'
+
+moment   = require 'moment'
+
 YAML     = require 'js-yaml'
 pug      = require 'pug'
 htmlDocx = require 'html-docx-js'
 pdf      = require 'html-pdf'
+
+date     = (t) -> moment(t).format 'YYYY-MM-DD'
+read     = (f) -> fs.readFileSync(f).toString()
 
 config   = ->
   conf = (require '../app').config
@@ -10,6 +17,7 @@ config   = ->
     updated:    date fs.statSync conf.data
     generated:  date()
 
+template = -> read config().template
 
 module.exports =
   formats:
@@ -33,13 +41,13 @@ module.exports =
              .toBuffer (err, buffer) ->
                if err then reject err else resolve buffer
 
-  futureFormats:
     docx:
       name: 'DOCX'
       type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
       extension: 'docx'
       converter: (resumé) -> htmlDocx.asBlob html resumé
 
+  futureFormats:
     markdown:   name: 'Markdown'
     plain:      name: 'Plain text'
     postscript: name: 'PostScript'

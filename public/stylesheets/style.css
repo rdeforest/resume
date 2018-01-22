@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+div.main {
+}
+
+div {
+  margin-right: 2em;
+}
+
+.float-left {
+  float: left;
+}
+.inline {
+  display: inline-block;
+}

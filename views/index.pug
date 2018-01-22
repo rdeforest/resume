@@ -1,16 +1,21 @@
 extends layout
 
 block content
-  h1= title
 
-  p My resume comes in multiple formats:
+  div.main
+    h1= title
 
-  ul
-    each format in formats
-      li: a(href=format.href)= format.name
+    div
+      div(class="inline float-left")
+        p My resume comes in multiple formats:
+        ul
+          each format, name in formats
+            - var formatUrl = "/resume/" + name
+            li: a(href=formatUrl)= format.name
 
-  p And soon...
+      div.inline
+        p And soon...
 
-  ul
-    each format in futureFormats
-      li= format.name
+        ul
+          each format in futureFormats
+            li= format.name

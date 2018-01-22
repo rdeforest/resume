@@ -3,7 +3,11 @@ when it works.
 
 Current work under way:
 
-- Add Cakefile with usual tasks
-- Add tests
-- Maybe port to [NW.js](https://github.com/nwjs/nw.js)?
+- Cakefile with usual tasks
+  - Task for generating static files?
+  - Add tests
+  - 
+- Maybe port to
+  - [NW.js](https://github.com/nwjs/nw.js)
+  - [Electron]()
 
