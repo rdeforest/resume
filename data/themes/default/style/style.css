@@ -43,16 +43,15 @@ h3 {
   text-align: center;
 }
 
-.border {
-  border: solid black 1px;
-}
-
 #keywords #categories {
-  display:     inline-block;
   width:       3.6in;
   text-align:  right;
   margin-top:  1em;
   margin-left: 1em;
+}
+
+.docx #categories > .div {
+  display: table-cell;
 }
 
 #categories > div {
@@ -135,3 +134,8 @@ div.particulars {
 #footer div:last-child {
   float: right;
 }
+
+.border {
+  border: solid black 1px;
+}
+
