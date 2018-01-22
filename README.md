@@ -19,18 +19,24 @@ If you want to tinker with it:
 
 If you want to serve the result up at http://localhost:3000
 
-- bin/www
+```sh
+    cake run
+```
 
-# Todo
+# Upcoming work
 
 - Add tests and make them pass
-- Integrate better with Express
 - Add more formats
   - Markdown
   - LaTeX?
-- Improve quality of project (add Cakefile, etc)
-- Decide whether to keep data/projects/\*.yaml
-- Remove references to "resumé" in code.
-  - There's nothing resumé-specific about the code.
+- Improve quality of project
+  - Create Yoman template as another project and derive this one from that one?
+  - Remove references to "resumé" in code.
+    - There's nothing resumé-specific about the code.
 - Include all available styles and projects in the "UI".
-- Port to AWS?
+- Port to
+  - AWS?
+  - Google Gears?
+  - NW.js?
+  - Electron?
+  - Docker?
