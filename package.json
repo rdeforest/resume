@@ -17,6 +17,7 @@
     "joe-reporter-console": "^2.0.1",
     "moment": "^2.20.1",
     "morgan": "~1.8.1",
+    "officegen": "^0.4.5",
     "pug": "~2.0.0-beta11",
     "serve-favicon": "~2.4.2"
   }
