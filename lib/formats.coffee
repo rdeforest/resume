@@ -7,29 +7,19 @@ pug      = require 'pug'
 htmlDocx = require 'html-docx-js'
 pdf      = require 'html-pdf'
 
-date     = (t) -> moment(t).format 'YYYY-MM-DD'
 read     = (f) -> fs.readFileSync(f).toString()
-
-config   = ->
-  conf = (require '../app').config
-
-  Object.assign conf,
-    updated:    date fs.statSync conf.data
-    generated:  date()
-
-template = -> read config().template
 
 module.exports =
   formats:
-    yaml: name: 'YAML', converter: YAML.safeDump
-    json: name: 'JSON', converter: (resumé) -> resumé
     html: name: 'HTML', converter: html = (resumé) ->
+      {settings: {config}} = require '../app'
+      {template} = config
       pugLocals = Object.assign {}, resumé,
-                                    filename: config().template
+                                    filename: config.template
                                     pretty:   true
-                                    config()
+                                    config
 
-      pug.render template(), pugLocals
+      pug.render read(template), pugLocals
 
     pdf:
       name: 'PDF'
@@ -41,13 +31,15 @@ module.exports =
              .toBuffer (err, buffer) ->
                if err then reject err else resolve buffer
 
+    yaml: name: 'YAML', converter: YAML.safeDump
+    json: name: 'JSON', converter: (resumé) -> resumé
+
+  futureFormats:
     docx:
       name: 'DOCX'
       type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
       extension: 'docx'
       converter: (resumé) -> htmlDocx.asBlob html resumé
-
-  futureFormats:
     markdown:   name: 'Markdown'
     plain:      name: 'Plain text'
     postscript: name: 'PostScript'

@@ -1,22 +1,29 @@
-express      = require 'express'
+fs           = require 'fs'
 path         = require 'path'
+
+express      = require 'express'
 favicon      = require 'serve-favicon'
 logger       = require 'morgan'
 cookieParser = require 'cookie-parser'
 bodyParser   = require 'body-parser'
+
+moment       = require 'moment'
+
 index        = require './routes/index'
 resume       = require './routes/resume'
 
 app          = express()
 
+date         = (t) -> moment(t).format 'YYYY-MM-DD'
+
 app.set 'views',       path.join __dirname, 'views'
 app.set 'view engine', 'pug'
 
-app.config =
-config = new (require './lib/config') {envroot}
-  .load 'config.yaml'
-
-app.set 'envroot',     envroot = __dirname
+app.set 'envroot', envroot = __dirname
+app.set 'config',  (config = new (require './lib/config') {envroot}).load 'config.yaml'
+Object.assign config,
+  updated:    date fs.statSync config.data
+  generated:  date()
 
 app.use logger 'dev'
 app.use bodyParser.json()

@@ -2,10 +2,11 @@ fs       = require 'fs'
 path     = require 'path'
 
 express  = require 'express'
-YAML     = require 'js-yaml'
-
 router   = express.Router()
 
+debug    = (require 'debug') "router:resume"
+
+YAML     = require 'js-yaml'
 pug      = require 'pug'
 htmlDocx = require 'html-docx-js'
 pdf      = require 'html-pdf'
@@ -16,20 +17,13 @@ date     = (t) -> moment(t).format 'YYYY-MM-DD'
 
 read     = (f) -> fs.readFileSync(f).toString()
 
-config   = ->
-  conf = (require '../app').config
-
-  Object.assign conf,
-    updated:    date fs.statSync conf.data
-    generated:  date()
-
-template = -> read config().template
-
 {formats} = require '../lib/formats'
 
 send = (res, resumé) ->
-  {format} = config()
-  {type, extension, converter} = formats[format]
+  app    = require '../app'
+  format = formats[app.settings.config.format]
+  debug "format: %O", format
+  {type, extension, converter} = format
 
   Promise.resolve converter resumé
     .catch (e) -> res.send e
@@ -42,10 +36,9 @@ send = (res, resumé) ->
       res.send rendered
 
 router.get '/:format', (req, res, next) ->
-  {data} = conf = config()
-
-  resumé = (require path.resolve conf.data) require '../lib/builder'
-  conf.format = req.params.format
+  app    = require '../app'
+  resumé = (require path.resolve app.settings.config.data) require '../lib/builder'
+  app.settings.config.format = req.params.format
   send res, resumé
   return
 
