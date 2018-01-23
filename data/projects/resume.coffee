@@ -41,7 +41,7 @@ module.exports =
         "Co-founded the DDoS Response Team"
         "Built DDoS detection stack in four regions"
         "Partially automated builds, reducing effort by factor of three"
-        "Covered daytime on call to facilitate team delivery of a new product on time"
+        "Covered daytime on call to guarantee timely delivery of a new product"
       ]
 
     job

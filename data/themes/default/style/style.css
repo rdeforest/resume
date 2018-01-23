@@ -88,7 +88,7 @@ h3 {
 
 div.particulars {
   float: left;
-  width: 25%;
+  width: 23%;
 }
 
 .particulars .where {
@@ -97,7 +97,7 @@ div.particulars {
 
 .delivered {
   display: inline-block;
-  width: 73%;
+  width: 76%;
   margin-left: 0.5em;
 }
 
@@ -107,7 +107,7 @@ div.particulars {
 }
 
 .delivered ul ul {
-  padding-left: 1.5em;
+  padding-left: 0.5em;
   margin: 0;
   margin-bottom: 0.5em;
 }
@@ -125,6 +125,9 @@ div.particulars {
 }
 
 #footer {
+  position: absolute;
+  bottom: 0;
+  right: 0.5in;
 }
 
 #footer div:first-child {
@@ -132,7 +135,6 @@ div.particulars {
 }
 
 #footer div:last-child {
-  float: right;
 }
 
 .border {
