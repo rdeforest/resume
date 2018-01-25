@@ -23,6 +23,10 @@ If you want to serve the result up at http://localhost:3000
     cake run
 ```
 
+# Known issues
+
+- --watch not restarting server
+
 # Upcoming work
 
 - Add tests and make them pass
@@ -40,3 +44,4 @@ If you want to serve the result up at http://localhost:3000
   - NW.js?
   - Electron?
   - Docker?
+

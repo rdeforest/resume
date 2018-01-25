@@ -1,14 +1,12 @@
-fs = require 'fs'
+fs            = require 'fs'
+child_process = require 'child_process'
 
-{sourceFiles, modules} = require './util'
+debug         = (require 'debug') 'watch'
 
-topModule = (child) ->
-  if child.parent
-    topModule child.parent
-  else
-    child
+{ sourceFiles
+  topModule
+  modules }   = require './util'
 
-# TODO: run the module in a child process and restart it as needed
 module.exports =
 watcher =
   (modulePath) ->

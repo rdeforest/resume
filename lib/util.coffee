@@ -11,6 +11,13 @@ makeVerbs = (stdout) ->
   echo: (s) -> stdout.write s
 
 Object.assign makeVerbs,
+  # wait... isn't this just require.main?
+  topModule: (childModule) ->
+    if childModule.parent
+      topModule childModule.parent
+    else
+      childModule
+
   modules: modules = (seen, module) ->
     if arguments.length is 1
       [module, seen] = [seen, []]
