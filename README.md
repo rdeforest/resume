@@ -15,16 +15,14 @@ If you want to tinker with it:
 
 - Clone this repo
 - Edit config.yaml and the contents of data/ to suit your purpose.
-- Run bin/regen
+- Run `npm install`
+- Run `cake run`
 
-If you want to serve the result up at http://localhost:3000
-
-```sh
-    cake run
-```
+The results are available at http://localhost:3000
 
 # Upcoming work
 
+- Fix 'cake regen'
 - Add tests and make them pass
 - Add more formats
   - Markdown
