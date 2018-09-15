@@ -47,16 +47,15 @@ h3 {
   text-align: center;
 }
 
-.border {
-  border: solid black 1px;
-}
-
 #keywords #categories {
-  display:     inline-block;
   width:       3.6in;
   text-align:  right;
   margin-top:  1em;
   margin-left: 1em;
+}
+
+.docx #categories > .div {
+  display: table-cell;
 }
 
 #categories > div {
@@ -93,7 +92,7 @@ h3 {
 
 div.particulars {
   float: left;
-  width: 25%;
+  width: 23%;
 }
 
 .particulars .where {
@@ -102,7 +101,7 @@ div.particulars {
 
 .delivered {
   display: inline-block;
-  width: 73%;
+  width: 76%;
   margin-left: 0.5em;
 }
 
@@ -112,7 +111,7 @@ div.particulars {
 }
 
 .delivered ul ul {
-  padding-left: 1.5em;
+  padding-left: 0.5em;
   margin: 0;
   margin-bottom: 0.5em;
 }
@@ -129,6 +128,24 @@ div.particulars {
   list-style-type: none;
 }
 
+#footer {
+  position: absolute;
+  bottom: 0;
+  right: 0.5in;
+}
+
+#footer div:first-child {
+  float: left;
+}
+
+#footer div:last-child {
+}
+
+.border {
+  border: solid black 1px;
+}
+
+
     </style>
   </head>
   <body class="html">
@@ -136,8 +153,8 @@ div.particulars {
       <div id="heading">
         <div id="contact">
           <h1>Robert de Forest</h1>
-          <div>1215 Seneca St #307</div>
-          <div>Seattle, WA, 98101</div>
+          <div>4175 Bachman Pl #53</div>
+          <div>San Diego, CA, 92103</div>
           <div><a href="mailto:robert@defore.st">robert@defore.st</a></div>
         </div>
         <div id="keywords">
@@ -181,7 +198,7 @@ div.particulars {
                 <li>Co-founded the DDoS Response Team</li>
                 <li>Built DDoS detection stack in four regions</li>
                 <li>Partially automated builds, reducing effort by factor of three</li>
-                <li>Covered daytime on call to facilitate team delivery of a new product on time</li>
+                <li>Covered daytime on call to guarantee timely delivery of a new product</li>
               </ul>
             </div>
           </div>
@@ -272,6 +289,10 @@ div.particulars {
             </div>
           </div>
         </div>
+      </div>
+      <div id="footer">
+        <!-- div Updated #{updated}-->
+        <div>Generated 2018-09-15</div>
       </div>
     </div>
   </body>
