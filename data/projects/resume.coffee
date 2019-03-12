@@ -32,7 +32,7 @@ module.exports =
       company: "Amazon.com"
       group: "AWS Perimeter Protection"
       title: "System Engineer II"
-      from: "2015", to: "Present"
+      from: "2015", to: "2018"
 
       summary: '''
       '''
