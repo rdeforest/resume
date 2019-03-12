@@ -6,20 +6,19 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "body-parser": "~1.17.1",
-    "coffeescript": "^2.1.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
-    "express": "~4.15.2",
+    "body-parser": "^1.18.3",
+    "coffeescript": "^2.3.2",
+    "cookie-parser": "^1.4.4",
+    "debug": "^2.6.9",
+    "express": "^4.16.4",
     "html-docx-js": "^0.3.1",
     "html-pdf": "^2.2.0",
-    "joe": "^2.0.2",
-    "joe-reporter-console": "^2.0.1",
-    "js-yaml": "^3.10.0",
-    "moment": "^2.20.1",
-    "morgan": "~1.8.1",
-    "officegen": "^0.4.5",
-    "pug": "~2.0.0-beta11",
-    "serve-favicon": "~2.4.2"
+    "js-yaml": "^3.12.2",
+    "kava": "^3.1.0",
+    "moment": "^2.24.0",
+    "morgan": "^1.8.2",
+    "officegen": "^0.4.7",
+    "pug": "^2.0.3",
+    "serve-favicon": "^2.4.5"
   }
 }
