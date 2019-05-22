@@ -9,7 +9,7 @@ module.exports =
   contact:
     name: "Robert de Forest"
     addr:
-      street: "4175 Bachman Pl #53"
+      street: "4175 Bachman Pl #68"
       city:   "San Diego"
       state:  "CA"
       zip:    "92103"
