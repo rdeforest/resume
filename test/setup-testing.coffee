@@ -22,10 +22,10 @@ env.NODE_PATH =
     .concat resolve __dirname, '..', 'lib'
     .join ':'
 
-env.JOE_REPORTER ?= 'console'
+#env.JOE_REPORTER ?= 'console'
 
 Object.assign global,
-              require('joe')
+              require('kava')
               {process}
               {modules}
               {getters}

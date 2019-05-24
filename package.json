@@ -6,19 +6,19 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "coffeescript": "^2.3.2",
+    "body-parser": "^1.19.0",
+    "coffeescript": "^2.4.1",
     "cookie-parser": "^1.4.4",
     "debug": "^2.6.9",
-    "express": "^4.16.4",
+    "express": "^4.17.0",
     "html-docx-js": "^0.3.1",
     "html-pdf": "^2.2.0",
-    "js-yaml": "^3.12.2",
+    "js-yaml": "^3.13.1",
     "kava": "^3.1.0",
     "moment": "^2.24.0",
-    "morgan": "^1.8.2",
-    "officegen": "^0.4.7",
+    "morgan": "^1.9.1",
+    "officegen": "^0.4.8",
     "pug": "^2.0.3",
-    "serve-favicon": "^2.4.5"
+    "serve-favicon": "^2.5.0"
   }
 }
