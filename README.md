@@ -11,6 +11,11 @@ If you just want to see my resumé, choose a format:
 - [PDF](https://github.com/rdeforest/resume/blob/master/public/resume.pdf)
 - [HTML](http://htmlpreview.github.io/?https://github.com/rdeforest/resume/blob/master/public/resume.html)
 
+Or download them:
+- [PDF](https://github.com/rdeforest/resume/raw/master/public/resume.pdf)
+- [HTML](https://github.com/rdeforest/resume/raw/master/public/resume.html)
+- [DOCX](https://github.com/rdeforest/resume/raw/master/public/resume.docx)
+
 If you want to tinker with it:
 
 - Clone this repo
