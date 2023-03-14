@@ -22,7 +22,7 @@ class Config
     Object.assign @, defaults
 
   load: (file) ->
-    conf = YAML.safeLoad fs.readFileSync file
+    conf = YAML.load fs.readFileSync file
     delete conf._
     Object.assign @, conf
 

@@ -21,7 +21,7 @@ template = -> read config().template
 
 module.exports =
   formats:
-    yaml: name: 'YAML', converter: YAML.safeDump
+    yaml: name: 'YAML', converter: YAML.dump
     json: name: 'JSON', converter: (resumé) -> resumé
     html: name: 'HTML', converter: html = (resumé) ->
       pugLocals = Object.assign {}, resumé,
