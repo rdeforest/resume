@@ -24,9 +24,6 @@ html
       div#heading
         div#contact
           h1= contact.name
-
-          div #{addr.street}
-          div #{addr.city}, #{addr.state}, #{addr.zip}
           div: a(href=emailUrl) #{contact.email}
 
         div#keywords
