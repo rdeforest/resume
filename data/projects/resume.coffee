@@ -1,7 +1,7 @@
 module.exports =
 ({ byCommaSpace, prevWithChanges, job }) ->
-  fs     = require 'fs'
-  moment = require 'moment'
+  #fs     = require 'fs'
+  #moment = require 'moment'
 
   #generated: moment()
   #updated:   moment fs.statSync(__filename).mtime
@@ -21,6 +21,7 @@ module.exports =
     Modes:        byCommaSpace "Communicative, Collaborative, Cooperative, Curious"
     Languages:    byCommaSpace "CoffeeScript, JavaScript, Bash, C"
     Technologies: byCommaSpace "GNU/Linux, NodeJS, TCP/IP, AWS"
+    Roles:        byCommaSpace "SysOps, SysEng, DevOps"
 
   positions: [
     job

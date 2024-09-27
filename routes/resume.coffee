@@ -7,8 +7,6 @@ YAML     = require 'js-yaml'
 router   = express.Router()
 
 pug      = require 'pug'
-htmlDocx = require 'html-docx-js'
-pdf      = require 'html-pdf'
 cs       = require 'coffeescript'
 moment   = require 'moment'
 
@@ -32,7 +30,9 @@ send = (res, resumé) ->
   {type, extension, converter} = formats[format]
 
   Promise.resolve converter resumé
-    .catch (e) -> res.send e
+    .catch (e) ->
+      console.log converter: e
+      res.send e
 
     .then (rendered) ->
       if type
