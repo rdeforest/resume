@@ -1,0 +1,17 @@
+I co-founded the DDoS response team. The team served as live 24/7 support for DDoS activity as it happened. Before this team existed, responses were ad-hoc and disorganized. We also provided internal customers with reports about recent DDoS activity. I scaled out the existing DDoS detection and mitigation solution to four new regions. I implemented automation which reduced by a factor of three the effort to scale out to new regions. During a period when my team was at risk of missing a deadline I volunteered to cover all daytime on-call for seven weeks in a row, freeing up engineers to concentrate on the development effort to guarantee timely delivery of a product.
+
+My primary duty was to serve as development support to the internal mobile payments project (later canceled). These duties included a bake-off of competing DUKPT Hardware Security Module products, verifying advertised performance and features. I produced a report describing my experience working with the companies' support teams, using their documentation and working with the equipment, as well as providing a recommendation, which was in fact adopted. I also led a project to help a third party vendor deploy their product to AWS.
+
+Secondary to that duty, I worked as on-call for the Payments Systems Operations team. We were responsible for the security and correct/timely functioning of the payments infrastructure. I worked with payment processors to troubleshoot issues sending and receiving transactions, including (for example) an error due to one processor not thinking they would ever see a certain number of transactions in the same day.
+
+I also was the primary owner of our AS2 connectivity solution. The solution existed when I joined the team, so I had to get up to speed on it, then having done so, write documentation and train the rest of our team.
+
+My team also consulted with internal development teams to investigate reliability problems to reduce on-call work.
+
+I was responsible for the correct, private, reliable operation of the data management system at SCHARP. The organization had hundreds of clinical trials field offices (or 'sites') which submitted dozens to hundreds of forms a day, each containing anonymized medical data about study participants. Operations were safety-critical because changes in participants' vitals would notify safety specialists via an alarm system. Privacy was critical because these sites operated in locations where the knowledge that someone was participating in one of these trials could endanger a patient due to ignorance about HIV/AIDS.
+
+While in this position I had about 100 local customers (data entry specialists, statisticians, primary investigators, project managers and a programming team), and around a thousand non-local customers, not including the patients, whom I never interacted with (naturally), but whom I still consider to be customers.
+
+My duties included a major upgrade from version 3 to 4 of the software I was responsible for and the graceful handling of a storage corruption issue which cropped up in the infrastructure. The organization presented me with a certificate of appreciation after the dust settled from these projects.
+
+The specific 'hard' technical skills I employed most heavily were fixing and extending Perl automation, learning and using the custom automation language built into the software, communicating about the technical capabilities and limitations of the software and troubleshooting fax-modem operations (it was usually line noise).
