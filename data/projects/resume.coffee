@@ -1,5 +1,8 @@
 module.exports =
 ({ byCommaSpace, prevWithChanges, job }) ->
+  if 'function' isnt typeof byCommaSpace
+    throw new Error "Bad call to projects/resume: missing dependency injections"
+
   #fs     = require 'fs'
   #moment = require 'moment'
 
