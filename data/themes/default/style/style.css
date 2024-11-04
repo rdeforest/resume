@@ -4,7 +4,6 @@ body {
 
   margin:          0.3in;
 
-  /* These don't seem to work in PhantomJS */
   display:         flex;
   justify-content: center;
 }
@@ -34,7 +33,7 @@ h3 {
 
 #contact {
   display: inline-block;
-  width: 2.9in;
+  /* width: 2.9in; */
 }
 
 #keywords {

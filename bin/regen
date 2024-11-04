@@ -2,5 +2,5 @@
 
 export ENVROOT=$(dirname $(dirname $(realpath $0)))
 $ENVROOT/node_modules/coffeescript/bin/coffee \
-  $ENVROOT/lib/regen.coffee "$@"
+  $ENVROOT/tasks/regen.coffee "$@"
 
