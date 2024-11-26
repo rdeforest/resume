@@ -1,6 +1,6 @@
 To whom it may concern,
 
-I am returning to work after a multi-year hiatus and am therefore looking for work which is closer to entry level than my resumé would suggest I am suited to. I hope to work in such a position long enough to leave the place better than I found it and to move up in the organization towards becoming a more influential member of the technology community.
+After multiple major life events in a short time, it was necessary for me to take a multi-year hiatus from work. I am therefore looking for work which is closer to entry level than my resumé would suggest I am suited to. I hope to work in such a position long enough to leave the place better than I found it and to move up in the organization towards becoming a more influential member of the technology community.
 
 I wish to promote the principles of cooperation and healthy communication as demonstrated in the best Free and Open Source projects, and to spread knowledge of the kinds of principles which have been true through my entire career: change management, version control, test-based development, modular designs and the like, as well as non-technical principles such as humility and patience.
 
