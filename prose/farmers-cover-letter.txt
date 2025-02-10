@@ -1,0 +1,13 @@
+To whom it may concern,
+
+This job is of particular interest to me because I've been a happy customer of Farmers since June 6th, 1996. I've always enjoyed visiting my agents because they treat me like family. I don't think a company can fake that for three decades across two states. I want to work at that kind of company.
+
+Also, after multiple major life events in a short time, it was necessary for me to take a multi-year hiatus from work. I am therefore looking for work which is closer to entry level than my resumé would suggest I am suited to. I hope to work in such a position long enough to leave the place better than I found it and to move up in the organization towards becoming a more influential member of the technology community.
+
+I wish to promote the principles of cooperation and healthy communication as demonstrated in the best Free and Open Source projects, and to spread knowledge of the kinds of principles which have been true through my entire career: change management, version control, test-based development, modular designs and the like, as well as non-technical principles such as humility and patience.
+
+I enjoy working in customer service positions because solving problems for customers gives me a heroic feeling and because I always learn something from them. I believe all positions are customer service, but particularly SRE positions because of the need to find solutions which benefit a wide variety of internal and external customers. 
+
+I look forward to hearing back from you,
+
+Robert de Forest
