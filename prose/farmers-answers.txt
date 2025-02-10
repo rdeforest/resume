@@ -1,0 +1,7 @@
+14 years.
+
+Both Disney and Amazon were standardized on RHEL when I worked there. Disney had not yet migrated to the cloud when I left and some of my time there was in one of the two data center locations providing infrastructure support, including running the tape backup solution. Disney started migrating from bare metal to VMware a couple years before I left. I was part of the team which evaluated the virtualization solutions and recommended VMware. While I was working there we had not yet gotten to the dead-simple configuration that makes provisioning automatic.
+
+The first team I worked in at Amazon was Payments System Engineering, which had not yet migrated to AWS because it the system dated back to when it was in Bezos' garage, and the security implications were complex. Patching was manual due to the constraints of the Secure Zone. We had to deploy the patches into the SZ and then manually apply them. Because the security of the SZ is so important, change was very carefully managed and that slowed down modernization.
+
+Next at Amazon I worked in Edge Services, a part of AWS, and there I used the internal automation to provision RHEL hosts. We didn't implement auto-scaling because our customers were all internal so the demand didn't increase geometrically the way it does for external customers. It has been a few years, but as I recall patching was automatic in the host images. Upgrading was handled by deploying new hosts and retiring old ones, which we did anyway to get the budget benefits of the new hardware.
