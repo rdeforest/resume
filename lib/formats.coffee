@@ -1,11 +1,11 @@
-fs       = require 'fs'
+fs         = require 'fs'
 
-moment   = require 'moment'
+moment     = require 'moment'
 
-YAML     = require 'js-yaml'
-pug      = require 'pug'
-htmlDocx = require 'html-docx-js'
-pdf      = require 'html-to-pdf-pup'
+YAML       = require 'js-yaml'
+pug        = require 'pug'
+HTMLtoDOCX = require 'html-to-docx'
+pdf        = require 'html-to-pdf-pup'
 
 date     = (t) -> moment(t).format 'YYYY-MM-DD'
 read     = (f) -> fs.readFileSync(f).toString()
@@ -47,7 +47,7 @@ module.exports =
       name: 'DOCX'
       type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
       extension: 'docx'
-      converter: (resumé) -> htmlDocx.asBlob html resumé
+      converter: (resumé) -> HTMLtoDOCX html resumé
 
   futureFormats:
     markdown:   name: 'Markdown'

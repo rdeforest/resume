@@ -9,7 +9,7 @@
     "coffeescript": "*",
     "debug": "*",
     "express": "*",
-    "html-docx-js": "*",
+    "html-to-docx": "^1.8.0",
     "html-to-pdf-pup": "^2.2.0",
     "js-yaml": "*",
     "moment": "*",
