@@ -1,11 +1,11 @@
-fs         = require 'fs'
+fs     = require 'fs'
+{spawn} = require 'child_process'
 
-moment     = require 'moment'
+moment = require 'moment'
 
-YAML       = require 'js-yaml'
-pug        = require 'pug'
-HTMLtoDOCX = require 'html-to-docx'
-pdf        = require 'html-to-pdf-pup'
+YAML   = require 'js-yaml'
+pug    = require 'pug'
+pdf    = require 'html-to-pdf-pup'
 
 date     = (t) -> moment(t).format 'YYYY-MM-DD'
 read     = (f) -> fs.readFileSync(f).toString()
@@ -27,6 +27,25 @@ html = (resumé) ->
 
   pug.render template(), pugLocals
 
+htmlToDocx = (htmlContent) ->
+  new Promise (resolve, reject) ->
+    pandoc = spawn 'pandoc', ['-f', 'html', '-t', 'docx']
+
+    chunks = []
+    errors = []
+
+    pandoc.stdout.on 'data', (chunk) -> chunks.push chunk
+    pandoc.stderr.on 'data', (chunk) -> errors.push chunk
+
+    pandoc.on 'close', (code) ->
+      if code is 0
+        resolve Buffer.concat chunks
+      else
+        reject new Error "pandoc failed: #{Buffer.concat(errors).toString()}"
+
+    pandoc.stdin.write htmlContent
+    pandoc.stdin.end()
+
 module.exports =
   formats:
     yaml: name: 'YAML', converter: YAML.dump
@@ -47,7 +66,7 @@ module.exports =
       name: 'DOCX'
       type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
       extension: 'docx'
-      converter: (resumé) -> HTMLtoDOCX html resumé
+      converter: (resumé) -> htmlToDocx html resumé
 
   futureFormats:
     markdown:   name: 'Markdown'

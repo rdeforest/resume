@@ -142,3 +142,51 @@ div.particulars {
   border: solid black 1px;
 }
 
+/* DOCX-specific overrides - no flexbox, floats, or complex positioning */
+body.docx {
+  display:         block;
+  justify-content: initial;
+}
+
+body.docx #contact {
+  display:      block;
+  width:        100%;
+  margin-bottom: 1em;
+}
+
+body.docx #keywords {
+  display:     block;
+  float:       none;
+  text-align:  left;
+  margin-left: 0;
+  width:       100%;
+}
+
+body.docx #keywords #categories {
+  text-align:  left;
+  margin-left: 0;
+  width:       100%;
+}
+
+body.docx #categories > div {
+  display:       block;
+  margin-bottom: 1em;
+}
+
+body.docx div.particulars {
+  float:         none;
+  width:         100%;
+  margin-bottom: 0.5em;
+}
+
+body.docx .delivered {
+  display:     block;
+  width:       100%;
+  margin-left: 0;
+}
+
+body.docx #footer {
+  position: static;
+  margin-top: 2em;
+}
+
