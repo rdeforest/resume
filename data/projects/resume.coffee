@@ -28,6 +28,22 @@ module.exports =
 
   positions: [
     job
+      company: "VCA Animal Hospitals"
+      group:   "Solutions Engineering"
+      title:   "Product Manager, QA Lead, System Architect, Engineering Lead"
+      from:    "2025", to: "present"
+      summary: '''
+        I am part of a skunkworks project to improve VCA employee satisfaction
+        with AI. Our current mandate is to learn everything about AI tech and
+        how to integrate it with existing systems. I represent the customers
+        (our employees) and provide guidence to the engineers based on my
+        decades of experience. I'm also doing my own research into LLMs
+        specifically and how to use them safely.
+      '''
+
+      delivered: [
+      ]
+    job
       company: "Amazon.com"
       group: "AWS Perimeter Protection"
       title: "System Engineer II"

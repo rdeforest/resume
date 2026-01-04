@@ -26,7 +26,13 @@ class Project
   data: ->
     contents = fs.readFileSync @_dataFile, 'utf8'
     switch
-      when @_dataFile.endsWith 'coffee' then cs.eval       contents
+      when @_dataFile.endsWith 'coffee'
+        dataModule = require path.resolve @_dataFile
+        builder    = require './builder'
+        if 'function' is typeof dataModule
+          dataModule builder
+        else
+          dataModule
       when @_dataFile.endsWith 'yaml'   then YAML.load     contents
       when @_dataFile.endsWith 'json'   then JSON.parse    contents
       else throw new Error "Format of file #{@_dataFile} could not be derived from its name"

@@ -8,7 +8,6 @@
 
   margin:          0.3in;
 
-  /* These don't seem to work in PhantomJS */
   display:         flex;
   justify-content: center;
 }
@@ -38,6 +37,7 @@ h3 {
 
 #contact {
   display: inline-block;
+  /* width: 2.9in; */
 }
 
 #keywords {
@@ -48,7 +48,7 @@ h3 {
 }
 
 #keywords #categories {
-  width:       3.6in;
+  width:       4.3in;
   text-align:  right;
   margin-top:  1em;
   margin-left: 1em;
@@ -73,8 +73,9 @@ h3 {
   font-size: 111%;
 }
 
-#keywords .category div {
+.category {
   margin-right: 1em;
+  vertical-align: top;
 }
 
 #experience {
@@ -101,7 +102,7 @@ div.particulars {
 
 .delivered {
   display: inline-block;
-  width: 76%;
+  width: 70%;
   margin-left: 0.5em;
 }
 
@@ -148,12 +149,13 @@ div.particulars {
 
     </style>
   </head>
-  <body class="html">
+  <body>
     <div>
       <div id="heading">
         <div id="contact">
-          <h1>Robert de Forest</h1>
+          <h2>Robert de Forest</h2>
           <div><a href="mailto:robert@defore.st">robert@defore.st</a></div>
+          <div>+1 206 909 5590</div>
         </div>
         <div id="keywords">
           <h3>A Few Of My Favorite ...</h3>
@@ -179,11 +181,29 @@ div.particulars {
               <div>TCP/IP</div>
               <div>AWS</div>
             </div>
+            <div class="category">
+              <div class="title">Roles</div>
+              <div>SysOps</div>
+              <div>SysEng</div>
+              <div>DevOps</div>
+            </div>
           </div>
         </div>
       </div>
       <div id="experience">
         <div id="positions">
+          <div class="position">
+            <div class="particulars">
+              <div class="where">VCA Animal Hospitals</div>
+              <div class="who">Solutions Engineering</div>
+              <div class="what">Product Manager, QA Lead, System Architect, Engineering Lead</div>
+              <div class="when">2025 - present</div>
+            </div>
+            <div class="delivered">
+              <ul>
+              </ul>
+            </div>
+          </div>
           <div class="position">
             <div class="particulars">
               <div class="where">Amazon.com</div>
@@ -288,10 +308,9 @@ div.particulars {
           </div>
         </div>
       </div>
-      <div id="footer">
-        <!-- div Updated #{updated}-->
-        <div>Generated 2023-03-13</div>
-      </div>
+      <!-- div#footer-->
+      <!--   div Updated #{updated}-->
+      <!--   div Generated #{generated}-->
     </div>
   </body>
 </html>
