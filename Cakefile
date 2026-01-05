@@ -12,14 +12,18 @@ option '-w', '--watch', 'Restart/recompile on file change'
 option '-d', '--debug', 'Turn on default debugging'
 
 taskDir = path.resolve __dirname, 'tasks'
-log "Loading tasks from #{taskDir}"
+console.log "Loading tasks from #{taskDir}"
 
-fs.readdirSync taskDir = taskDir
-    .filter  (name) ->
-      return name is 'run.coffee'
-      not name.startsWith '.'
-      
-    .forEach (name) ->
-      taskPath = path.resolve taskDir, name
-      log "Loading task #{name} from path #{taskPath}"
-      (require taskPath) Task
+dentries = fs.readdirSync taskDir = taskDir
+
+console.log {dentries}
+
+dentries
+  .filter  (name) ->
+    return name is 'run.coffee'
+    not name.startsWith '.'
+    
+  .forEach (name) ->
+    taskPath = path.resolve taskDir, name
+    log "Loading task #{name} from path #{taskPath}"
+    (require taskPath) Task
