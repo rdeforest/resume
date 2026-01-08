@@ -38,7 +38,21 @@
       "from": "2025",
       "to": "present",
       "summary": "I am part of a skunkworks project to improve VCA employee satisfaction\nwith AI. Our current mandate is to learn everything about AI tech and\nhow to integrate it with existing systems. I represent the customers\n(our employees) and provide guidence to the engineers based on my\ndecades of experience. I'm also doing my own research into LLMs\nspecifically and how to use them safely.",
-      "delivered": []
+      "delivered": [
+        "Will deliver in Q1 2026: An LLM-based text interface in front of ServiceNow to increase employee satisfaction."
+      ]
+    },
+    {
+      "company": "Self",
+      "group": "Sebatical",
+      "title": "",
+      "from": 2018,
+      "to": 2025,
+      "summary": "I had a family loss in 2018 and took some time to focus on my health\nand reset. In 2025 I rejoined the workforce. My personal growth during\nmy time off has already payed dividends in my new job.",
+      "delivered": [
+        "Health improvements",
+        "Improved habits, personal and interpersonal skills"
+      ]
     },
     {
       "company": "Amazon.com",

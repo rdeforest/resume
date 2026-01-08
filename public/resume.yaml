@@ -39,7 +39,22 @@ positions:
       (our employees) and provide guidence to the engineers based on my
       decades of experience. I'm also doing my own research into LLMs
       specifically and how to use them safely.
-    delivered: []
+    delivered:
+      - >-
+        Will deliver in Q1 2026: An LLM-based text interface in front of
+        ServiceNow to increase employee satisfaction.
+  - company: Self
+    group: Sebatical
+    title: ''
+    from: 2018
+    to: 2025
+    summary: |-
+      I had a family loss in 2018 and took some time to focus on my health
+      and reset. In 2025 I rejoined the workforce. My personal growth during
+      my time off has already payed dividends in my new job.
+    delivered:
+      - Health improvements
+      - Improved habits, personal and interpersonal skills
   - company: Amazon.com
     group: AWS Perimeter Protection
     title: System Engineer II

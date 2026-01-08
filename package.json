@@ -8,6 +8,7 @@
   "dependencies": {
     "coffeescript": "*",
     "debug": "*",
+    "docx": "^9.5.1",
     "express": "*",
     "html-to-pdf-pup": "^2.2.0",
     "js-yaml": "*",

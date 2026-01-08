@@ -1,11 +1,13 @@
-fs     = require 'fs'
-{spawn} = require 'child_process'
+fs           = require 'fs'
+path         = require 'path'
+{spawn}      = require 'child_process'
 
-moment = require 'moment'
+moment       = require 'moment'
 
-YAML   = require 'js-yaml'
-pug    = require 'pug'
-pdf    = require 'html-to-pdf-pup'
+YAML         = require 'js-yaml'
+pug          = require 'pug'
+pdf          = require 'html-to-pdf-pup'
+buildDocx    = require './docx-builder'
 
 date     = (t) -> moment(t).format 'YYYY-MM-DD'
 read     = (f) -> fs.readFileSync(f).toString()
@@ -29,7 +31,14 @@ html = (resumé) ->
 
 htmlToDocx = (htmlContent) ->
   new Promise (resolve, reject) ->
-    pandoc = spawn 'pandoc', ['-f', 'html', '-t', 'docx']
+    args = ['-f', 'html', '-t', 'docx']
+
+    # Use reference doc for styling if it exists
+    refDoc = path.resolve __dirname, '..', 'data', 'reference.docx'
+    if fs.existsSync refDoc
+      args.push '--reference-doc', refDoc
+
+    pandoc = spawn 'pandoc', args
 
     chunks = []
     errors = []
@@ -66,7 +75,7 @@ module.exports =
       name: 'DOCX'
       type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
       extension: 'docx'
-      converter: (resumé) -> htmlToDocx html resumé
+      converter: buildDocx
 
   futureFormats:
     markdown:   name: 'Markdown'

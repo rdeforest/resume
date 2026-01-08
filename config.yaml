@@ -3,7 +3,7 @@
 # document what can be changed.
 
 project:      resume
-theme:        default
+theme:        table-based
 
 watch:        false
 watchSleepMs: 500
@@ -18,5 +18,5 @@ data:         data/projects/resume.coffee
 destination:  public/resume.html
 
 # And these are derived from 'theme'
-themeDir:     data/themes/default
-template:     data/themes/default/main.pug
+themeDir:     data/themes/table-based
+template:     data/themes/table-based/main.pug

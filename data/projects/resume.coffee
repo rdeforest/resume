@@ -42,7 +42,25 @@ module.exports =
       '''
 
       delivered: [
+        "Will deliver in Q1 2026: An LLM-based text interface in front of ServiceNow to increase employee satisfaction."
       ]
+    job
+      company: "Self"
+      group: "Sabbatical"
+      title: ''
+      from: 2018, to: 2025
+      summary: '''
+        I had a family loss in 2018 and took some time to focus on my health
+        and reset. In 2025 I rejoined the workforce. My personal growth during
+        my time off has already paid dividends in my new job. I'm developing
+        stronger emotional intelligence and communication skills and improving
+        my work-life balance practices.
+      '''
+      delivered: [
+        "Successfully navigated a difficult life transition"
+        "Returned to workforce with renewed focus and energy"
+      ]
+
     job
       company: "Amazon.com"
       group: "AWS Perimeter Protection"

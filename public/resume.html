@@ -3,279 +3,318 @@
   <head>
     <title>Resume of Robert de Forest</title>
     <style>body {
-  font-family:     "Arial", Verdana, sans-serif;
-  font-size:       8pt;
-
-  margin:          0.3in;
-
-  display:         flex;
-  justify-content: center;
+  font-family: "Arial", Verdana, sans-serif;
+  font-size:   8pt;
+  margin:      0.3in;
 }
 
 body.html {
   font-size: 90%;
 }
 
-body > div {
-  max-width:   8.0in;
-  max-height: 10.0in;
-}
-
-h1 {
+h1, h2 {
   margin: 0;
-}
-
-#heading {
-  margin-bottom: 1em;
-  margin-top:    1em;
 }
 
 h3 {
   font-style: italic;
-  margin: 0;
+  margin:     0;
 }
 
-#contact {
-  display: inline-block;
-  /* width: 2.9in; */
+/* Remove default table styling */
+table {
+  border-collapse: collapse;
+  border-spacing:  0;
+  width:           100%;
+  margin:          0;
+  padding:         0;
 }
 
-#keywords {
-  display:    inline-block;
-  margin-top: 0em;
-  float:      right;
-  text-align: center;
+td {
+  border:  none;
+  padding: 0;
+  margin:  0;
 }
 
-#keywords #categories {
-  width:       4.3in;
-  text-align:  right;
-  margin-top:  1em;
-  margin-left: 1em;
-}
-
-.docx #categories > .div {
-  display: table-cell;
-}
-
-#categories > div {
-  display: inline-block;
-}
-
-#categories .title {
-  font-size:     10pt;
-  font-weight:   bold;
-  font-style:    italic;
+/* Contact section - name and details on one line */
+div#contact {
   margin-bottom: 0.5em;
+  margin-top:    1em;
 }
 
-.html #categories .title {
-  font-size: 111%;
-}
-
-.category {
+div#contact h2 {
+  display: inline;
   margin-right: 1em;
+}
+
+div#contact .contact-details {
+  font-size: 10pt;
+}
+
+/* Intro paragraph */
+div#intro {
+  margin-bottom: 1em;
+  font-size: 9pt;
+  line-height: 1.3;
+}
+
+/* Keywords section - separate from contact */
+div#keywords {
+  margin-bottom: 1em;
+  text-align:    center;
+}
+
+/* Keywords table - more compact */
+table#categories {
+  margin-top:    0.3em;
+  margin-bottom: 1em;
+  margin-left:   auto;
+  margin-right:  auto;  /* Center the table */
+  width:         auto;
+  font-size:     6pt;  /* Even smaller */
+}
+
+table#categories th {
+  font-weight:    bold;
+  font-style:     italic;
+  padding:        0.05em 0.2em;
+  text-align:     center;
   vertical-align: top;
 }
 
-#experience {
-  clear: both;
-  padding-top: 1em;
+table#categories th[colspan] {
+  font-size:   7pt;
+  font-style:  italic;
+  font-weight: normal;
 }
 
-#positions {
-  margin-top: 0em;
+.html table#categories th[colspan] {
+  font-size: 90%;
 }
 
-.position {
-  margin-top: 2em;
-}
-
-div.particulars {
-  float: left;
-  width: 23%;
-}
-
-.particulars .where {
+table#categories th.category-name {
+  font-size:   6pt;
   font-weight: bold;
 }
 
-.delivered {
-  display: inline-block;
-  width: 70%;
-  margin-left: 0.5em;
+table#categories td.keyword-item {
+  padding:        0.03em 0.2em;
+  text-align:     center;
+  vertical-align: top;
+  font-size:      6pt;
 }
 
-.delivered ul {
+/* Experience section - single table */
+#experience {
+  padding-top: 0.5em;
+}
+
+table#positions {
+  margin-top: 0;
+  width: 100%;
+}
+
+table#positions tr.position {
+  margin-bottom: 1em;
+}
+
+table#positions td.timeline {
+  width:          10%;
+  vertical-align: top;
+  padding-right:  0.5em;
+  text-align:     right;
+  font-size:      9pt;
+}
+
+table#positions td.timeline .dates {
   margin: 0;
+}
+
+table#positions td.timeline .dash {
+  margin: 0;
+  text-align: center;
+}
+
+table#positions td.job-content {
+  width:          90%;
+  vertical-align: top;
+  padding-bottom: 1em;
+}
+
+.job-content .company {
+  font-weight: bold;
+  font-size:   10pt;
+}
+
+.job-content .group {
+  font-size: 9pt;
+}
+
+.job-content .title {
+  font-size: 9pt;
+  font-style: italic;
+}
+
+.job-content .summary {
+  margin-top:    0.5em;
+  margin-bottom: 0.5em;
+  font-size:     9pt;
+  line-height:   1.3;
+}
+
+.job-content ul {
+  margin:  0;
   padding: 0;
 }
 
-.delivered ul ul {
-  padding-left: 0.5em;
-  margin: 0;
+.job-content ul ul {
+  padding-left:  0.5em;
+  margin:        0;
   margin-bottom: 0.5em;
 }
 
-.delivered ul ul:last-child {
+.job-content ul ul:last-child {
   margin-bottom: 0em;
 }
 
-.delivered li::before {
+.job-content li::before {
   content: "- "
 }
 
-.delivered li {
+.job-content li {
   list-style-type: none;
 }
 
 #footer {
-  position: absolute;
-  bottom: 0;
-  right: 0.5in;
-}
-
-#footer div:first-child {
-  float: left;
-}
-
-#footer div:last-child {
-}
-
-.border {
-  border: solid black 1px;
-}
-
-/* DOCX-specific overrides - no flexbox, floats, or complex positioning */
-body.docx {
-  display:         block;
-  justify-content: initial;
-}
-
-body.docx #contact {
-  display:      block;
-  width:        100%;
-  margin-bottom: 1em;
-}
-
-body.docx #keywords {
-  display:     block;
-  float:       none;
-  text-align:  left;
-  margin-left: 0;
-  width:       100%;
-}
-
-body.docx #keywords #categories {
-  text-align:  left;
-  margin-left: 0;
-  width:       100%;
-}
-
-body.docx #categories > div {
-  display:       block;
-  margin-bottom: 1em;
-}
-
-body.docx div.particulars {
-  float:         none;
-  width:         100%;
-  margin-bottom: 0.5em;
-}
-
-body.docx .delivered {
-  display:     block;
-  width:       100%;
-  margin-left: 0;
-}
-
-body.docx #footer {
-  position: static;
   margin-top: 2em;
 }
-
 
     </style>
   </head>
   <body>
     <div>
-      <div id="heading">
-        <div id="contact">
-          <h2>Robert de Forest</h2>
-          <div><a href="mailto:robert@defore.st">robert@defore.st</a></div>
-          <div>+1 206 909 5590</div>
-        </div>
-        <div id="keywords">
-          <h3>A Few Of My Favorite ...</h3>
-          <div id="categories">
-            <div class="category">
-              <div class="title">Modes</div>
-              <div>Communicative</div>
-              <div>Collaborative</div>
-              <div>Cooperative</div>
-              <div>Curious</div>
-            </div>
-            <div class="category">
-              <div class="title">Languages</div>
-              <div>CoffeeScript</div>
-              <div>JavaScript</div>
-              <div>Bash</div>
-              <div>C</div>
-            </div>
-            <div class="category">
-              <div class="title">Technologies</div>
-              <div>GNU/Linux</div>
-              <div>NodeJS</div>
-              <div>TCP/IP</div>
-              <div>AWS</div>
-            </div>
-            <div class="category">
-              <div class="title">Roles</div>
-              <div>SysOps</div>
-              <div>SysEng</div>
-              <div>DevOps</div>
-            </div>
-          </div>
-        </div>
+      <!-- Header: Name and contact on one line-->
+      <div id="contact">
+        <h2>Robert de Forest</h2><span class="contact-details"><a href="mailto:robert@defore.st">robert@defore.st</a> •<span>+1 206 909 5590</span></span>
       </div>
+      <!-- Intro paragraph-->
+      <div id="intro">Idealist seeks real-world experiences by which to claw ever closer to a
+world in which humans collaboratively refine rather than re-invent
+wheels, to the benefit of all.</div>
+      <!-- Keywords table - compact-->
+      <div id="keywords">
+        <table id="categories">
+          <thead>
+            <tr>
+              <th colspan="4">A Few Of My Favorite ...</th>
+            </tr>
+            <tr>
+              <th class="category-name">Modes</th>
+              <th class="category-name">Languages</th>
+              <th class="category-name">Technologies</th>
+              <th class="category-name">Roles</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="keyword-item">Communicative</td>
+              <td class="keyword-item">CoffeeScript</td>
+              <td class="keyword-item">GNU/Linux</td>
+              <td class="keyword-item">SysOps</td>
+            </tr>
+            <tr>
+              <td class="keyword-item">Collaborative</td>
+              <td class="keyword-item">JavaScript</td>
+              <td class="keyword-item">NodeJS</td>
+              <td class="keyword-item">SysEng</td>
+            </tr>
+            <tr>
+              <td class="keyword-item">Cooperative</td>
+              <td class="keyword-item">Bash</td>
+              <td class="keyword-item">TCP/IP</td>
+              <td class="keyword-item">DevOps</td>
+            </tr>
+            <tr>
+              <td class="keyword-item">Curious</td>
+              <td class="keyword-item">C</td>
+              <td class="keyword-item">AWS</td>
+              <td class="keyword-item"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Single job history table with timeline sidebar-->
       <div id="experience">
-        <div id="positions">
-          <div class="position">
-            <div class="particulars">
-              <div class="where">VCA Animal Hospitals</div>
-              <div class="who">Solutions Engineering</div>
-              <div class="what">Product Manager, QA Lead, System Architect, Engineering Lead</div>
-              <div class="when">2025 - present</div>
-            </div>
-            <div class="delivered">
+        <table id="positions">
+          <tr class="position">
+            <td class="timeline">
+              <div class="dates">present</div>
+              <div class="dash"> -</div>
+              <div class="dates">2025</div>
+            </td>
+            <td class="job-content">
+              <div class="company">VCA Animal Hospitals</div>
+              <div class="group">Solutions Engineering</div>
+              <div class="title">Product Manager, QA Lead, System Architect, Engineering Lead</div>
+              <div class="summary">I am part of a skunkworks project to improve VCA employee satisfaction
+with AI. Our current mandate is to learn everything about AI tech and
+how to integrate it with existing systems. I represent the customers
+(our employees) and provide guidence to the engineers based on my
+decades of experience. I'm also doing my own research into LLMs
+specifically and how to use them safely.</div>
               <ul>
+                <li>Will deliver in Q1 2026: An LLM-based text interface in front of ServiceNow to increase employee satisfaction.</li>
               </ul>
-            </div>
-          </div>
-          <div class="position">
-            <div class="particulars">
-              <div class="where">Amazon.com</div>
-              <div class="who">AWS Perimeter Protection</div>
-              <div class="what">System Engineer II</div>
-              <div class="when">2015 - 2018</div>
-            </div>
-            <div class="delivered">
+            </td>
+          </tr>
+          <tr class="position">
+            <td class="timeline">
+              <div class="dates">2025</div>
+              <div class="dash"> -</div>
+              <div class="dates">2018</div>
+            </td>
+            <td class="job-content">
+              <div class="company">Self</div>
+              <div class="group">Sebatical</div>
+              <div class="summary">I had a family loss in 2018 and took some time to focus on my health
+and reset. In 2025 I rejoined the workforce. My personal growth during
+my time off has already payed dividends in my new job.</div>
+              <ul>
+                <li>Health improvements</li>
+                <li>Improved habits, personal and interpersonal skills</li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="position">
+            <td class="timeline">
+              <div class="dates">2018</div>
+              <div class="dash"> -</div>
+              <div class="dates">2015</div>
+            </td>
+            <td class="job-content">
+              <div class="company">Amazon.com</div>
+              <div class="group">AWS Perimeter Protection</div>
+              <div class="title">System Engineer II</div>
+              <div class="summary">      </div>
               <ul>
                 <li>Co-founded the DDoS Response Team</li>
                 <li>Built DDoS detection stack in four regions</li>
                 <li>Partially automated builds, reducing effort by factor of three</li>
                 <li>Covered daytime on call to guarantee timely delivery of a new product</li>
               </ul>
-            </div>
-          </div>
-          <div class="position">
-            <div class="particulars">
-              <div class="where">Amazon.com</div>
-              <div class="who">Payments System Operations</div>
-              <div class="what">System Engineer II</div>
-              <div class="when">2012 - 2015</div>
-            </div>
-            <div class="delivered">
+            </td>
+          </tr>
+          <tr class="position">
+            <td class="timeline">
+              <div class="dates">2015</div>
+              <div class="dash"> -</div>
+              <div class="dates">2012</div>
+            </td>
+            <td class="job-content">
+              <div class="company">Amazon.com</div>
+              <div class="group">Payments System Operations</div>
+              <div class="title">System Engineer II</div>
+              <div class="summary">      </div>
               <ul>
                 <li>Supported Mobile Payments project</li>
                 <ul>
@@ -295,16 +334,19 @@ body.docx #footer {
                 </ul>
                 <li>Co-authored six-pager for moving Payments into AWS</li>
               </ul>
-            </div>
-          </div>
-          <div class="position">
-            <div class="particulars">
-              <div class="where">Fred Hutch Cancer Research Center</div>
-              <div class="who">SCHARP.org</div>
-              <div class="what">DataFax Administrator</div>
-              <div class="when">2010 - 2012</div>
-            </div>
-            <div class="delivered">
+            </td>
+          </tr>
+          <tr class="position">
+            <td class="timeline">
+              <div class="dates">2012</div>
+              <div class="dash"> -</div>
+              <div class="dates">2010</div>
+            </td>
+            <td class="job-content">
+              <div class="company">Fred Hutch Cancer Research Center</div>
+              <div class="group">SCHARP.org</div>
+              <div class="title">DataFax Administrator</div>
+              <div class="summary">      </div>
               <ul>
                 <li>Performed a major software upgrade</li>
                 <ul>
@@ -315,16 +357,19 @@ body.docx #footer {
                 <li>Supported in-house developers of systems extending DataFax</li>
                 <li>Recovered from infrastructure issue which caused data corruption</li>
               </ul>
-            </div>
-          </div>
-          <div class="position">
-            <div class="particulars">
-              <div class="where">The Walt Disney Internet Group</div>
-              <div class="who">Three different teams</div>
-              <div class="what">SysOps Specialist III</div>
-              <div class="when">May 2002 - May 2010</div>
-            </div>
-            <div class="delivered">
+            </td>
+          </tr>
+          <tr class="position">
+            <td class="timeline">
+              <div class="dates">May 2010</div>
+              <div class="dash"> -</div>
+              <div class="dates">May 2002</div>
+            </td>
+            <td class="job-content">
+              <div class="company">The Walt Disney Internet Group</div>
+              <div class="group">Three different teams</div>
+              <div class="title">SysOps Specialist III</div>
+              <div class="summary">      </div>
               <ul>
                 <li>Supported engineers and content producers of Disney's web properties</li>
                 <li>Assisted in migration from internal Java servlet engines to Tomcat</li>
@@ -334,16 +379,19 @@ body.docx #footer {
                 <li>Supported internally developed email marketing system</li>
                 <li>Re-architected system to reduce cost and increase availability</li>
               </ul>
-            </div>
-          </div>
-          <div class="position">
-            <div class="particulars">
-              <div class="where">Three small companies</div>
-              <div class="who">Santa Cruz, CA</div>
-              <div class="what">Tech lead, sysadmin, etc.</div>
-              <div class="when">1996 - 2002</div>
-            </div>
-            <div class="delivered">
+            </td>
+          </tr>
+          <tr class="position">
+            <td class="timeline">
+              <div class="dates">2002</div>
+              <div class="dash"> -</div>
+              <div class="dates">1996</div>
+            </td>
+            <td class="job-content">
+              <div class="company">Three small companies</div>
+              <div class="group">Santa Cruz, CA</div>
+              <div class="title">Tech lead, sysadmin, etc.</div>
+              <div class="summary">      </div>
               <ul>
                 <li>Desktop/server/network/hardware operations for</li>
                 <ul>
@@ -352,9 +400,9 @@ body.docx #footer {
                   <li>Tapestry.net, a dot-com startup with 60 employees</li>
                 </ul>
               </ul>
-            </div>
-          </div>
-        </div>
+            </td>
+          </tr>
+        </table>
       </div>
       <!-- div#footer-->
       <!--   div Updated #{updated}-->
