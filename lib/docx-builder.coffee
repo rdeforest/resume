@@ -31,7 +31,11 @@ buildContact = (contact) ->
 # Build keywords table
 buildKeywordsTable = (keywords) ->
   categories = Object.keys keywords
+  numColumns = categories.length
   maxLength = Math.max (keywords[cat].length for cat in categories)...
+
+  # Calculate column width dynamically: 9360 DXA total / number of columns
+  columnWidth = Math.floor 9360 / numColumns
 
   # Header row: "A Few Of My Favorite ..."
   headerRow = new TableRow
@@ -42,7 +46,7 @@ buildKeywordsTable = (keywords) ->
             text: 'A Few Of My Favorite ...'
             alignment: AlignmentType.CENTER
         ]
-        columnSpan: categories.length
+        columnSpan: numColumns
     ]
 
   # Category name row
@@ -78,11 +82,10 @@ buildKeywordsTable = (keywords) ->
 
   new Table
     rows: [headerRow, categoryRow].concat dataRows
-    columnWidths: [2340, 2340, 2340, 2340]  # 9360 DXA / 4 columns (gridCol values)
     borders: TableBorders.NONE
     width:
       size: 0
-      type: WidthType.AUTO  # Let Google Docs figure it out
+      type: WidthType.AUTO  # Let the renderer figure out optimal column widths
 
 # Build recursive list (for job deliverables)
 buildList = (items, level = 0) ->
