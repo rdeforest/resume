@@ -3,7 +3,7 @@
   <head>
     <title>Resume of Robert de Forest</title>
     <style>body {
-  font-family: "Arial", Verdana, sans-serif;
+  font-family: "FreeSans", "Liberation Sans", Arial, sans-serif;
   font-size:   8pt;
   margin:      0.3in;
 }
@@ -36,38 +36,51 @@ td {
   margin:  0;
 }
 
-/* Contact section - name and details on one line */
-div#contact {
-  margin-bottom: 0.5em;
-  margin-top:    1em;
+/* Header table - 3 columns */
+table#header {
+  width:         100%;
+  margin-bottom: 1em;
+  margin-top:    0.5em;
 }
 
-div#contact h2 {
-  display: inline;
-  margin-right: 1em;
+table#header td {
+  vertical-align: top;
+  padding:        0.2em;
 }
 
-div#contact .contact-details {
+table#header td.header-contact {
+  width:     20%;
   font-size: 10pt;
 }
 
-/* Intro paragraph */
-div#intro {
-  margin-bottom: 1em;
-  font-size: 9pt;
-  line-height: 1.3;
+table#header td.header-contact .name {
+  font-weight: bold;
+  font-size:   12pt;
+  margin-bottom: 0.2em;
 }
 
-/* Keywords section - separate from contact */
-div#keywords {
-  margin-bottom: 1em;
-  text-align:    center;
+table#header td.header-contact .email,
+table#header td.header-contact .phone {
+  font-size: 9pt;
+}
+
+table#header td.header-intro {
+  width:       40%;
+  font-size:   9pt;
+  line-height: 1.3;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+table#header td.header-keywords {
+  width:      40%;
+  text-align: center;
 }
 
 /* Keywords table - more compact */
 table#categories {
-  margin-top:    0.3em;
-  margin-bottom: 1em;
+  margin-top:    0.2em;
+  margin-bottom: 0.5em;
   margin-left:   auto;
   margin-right:  auto;  /* Center the table */
   width:         auto;
@@ -77,9 +90,9 @@ table#categories {
 table#categories th {
   font-weight:    bold;
   font-style:     italic;
-  padding:        0.05em 0.2em;
+  padding:        0.03em 0.15em;
   text-align:     center;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 table#categories th[colspan] {
@@ -98,9 +111,9 @@ table#categories th.category-name {
 }
 
 table#categories td.keyword-item {
-  padding:        0.03em 0.2em;
+  padding:        0.02em 0.15em;
   text-align:     center;
-  vertical-align: top;
+  vertical-align: middle;
   font-size:      6pt;
 }
 
@@ -122,7 +135,7 @@ table#positions td.timeline {
   width:          10%;
   vertical-align: top;
   padding-right:  0.5em;
-  text-align:     right;
+  text-align:     center;
   font-size:      9pt;
 }
 
@@ -135,31 +148,38 @@ table#positions td.timeline .dash {
   text-align: center;
 }
 
-table#positions td.job-content {
-  width:          90%;
+table#positions td.job-header {
+  width:          25%;
   vertical-align: top;
-  padding-bottom: 1em;
+  padding-right:  0.5em;
+  font-size:      9pt;
 }
 
-.job-content .company {
+table#positions td.job-content {
+  width:          65%;
+  vertical-align: top;
+  padding-bottom: 1em;
+  font-size:      7pt;
+}
+
+.job-header .company {
   font-weight: bold;
   font-size:   10pt;
 }
 
-.job-content .group {
+.job-header .group {
   font-size: 9pt;
 }
 
-.job-content .title {
+.job-header .title {
   font-size: 9pt;
   font-style: italic;
 }
 
 .job-content .summary {
-  margin-top:    0.5em;
-  margin-bottom: 0.5em;
-  font-size:     9pt;
-  line-height:   1.3;
+  margin-top:    0;
+  margin-bottom: 0.3em;
+  line-height:   1.2;
 }
 
 .job-content ul {
@@ -193,109 +213,125 @@ table#positions td.job-content {
   </head>
   <body>
     <div>
-      <!-- Header: Name and contact on one line-->
-      <div id="contact">
-        <h2>Robert de Forest</h2><span class="contact-details"><a href="mailto:robert@defore.st">robert@defore.st</a> •<span>+1 206 909 5590</span></span>
-      </div>
-      <!-- Intro paragraph-->
-      <div id="intro">Idealist seeks real-world experiences by which to claw ever closer to a
+      <!-- Header: 3-column table with contact | intro | keywords-->
+      <table id="header">
+        <tr>
+          <td class="header-contact">
+            <div class="name">Robert de Forest</div>
+            <div class="email"><a href="mailto:robert@defore.st">robert@defore.st</a></div>
+            <div class="phone">+1 206 909 5590</div>
+          </td>
+          <td class="header-intro">Idealist seeks real-world experiences by which to claw ever closer to a
 world in which humans collaboratively refine rather than re-invent
-wheels, to the benefit of all.</div>
-      <!-- Keywords table - compact-->
-      <div id="keywords">
-        <table id="categories">
-          <thead>
-            <tr>
-              <th colspan="4">A Few Of My Favorite ...</th>
-            </tr>
-            <tr>
-              <th class="category-name">Modes</th>
-              <th class="category-name">Languages</th>
-              <th class="category-name">Technologies</th>
-              <th class="category-name">Roles</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="keyword-item">Communicative</td>
-              <td class="keyword-item">CoffeeScript</td>
-              <td class="keyword-item">GNU/Linux</td>
-              <td class="keyword-item">SysOps</td>
-            </tr>
-            <tr>
-              <td class="keyword-item">Collaborative</td>
-              <td class="keyword-item">JavaScript</td>
-              <td class="keyword-item">NodeJS</td>
-              <td class="keyword-item">SysEng</td>
-            </tr>
-            <tr>
-              <td class="keyword-item">Cooperative</td>
-              <td class="keyword-item">Bash</td>
-              <td class="keyword-item">TCP/IP</td>
-              <td class="keyword-item">DevOps</td>
-            </tr>
-            <tr>
-              <td class="keyword-item">Curious</td>
-              <td class="keyword-item">C</td>
-              <td class="keyword-item">AWS</td>
-              <td class="keyword-item"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!-- Single job history table with timeline sidebar-->
+wheels, to the benefit of all.
+          </td>
+          <td class="header-keywords">
+            <table id="categories">
+              <thead>
+                <tr>
+                  <th colspan="4">A Few Of My Favorite ...</th>
+                </tr>
+                <tr>
+                  <th class="category-name">Modes</th>
+                  <th class="category-name">Languages</th>
+                  <th class="category-name">Technologies</th>
+                  <th class="category-name">Roles</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="keyword-item">Communicative</td>
+                  <td class="keyword-item">CoffeeScript</td>
+                  <td class="keyword-item">GNU/Linux</td>
+                  <td class="keyword-item">SysOps</td>
+                </tr>
+                <tr>
+                  <td class="keyword-item">Collaborative</td>
+                  <td class="keyword-item">JavaScript</td>
+                  <td class="keyword-item">NodeJS</td>
+                  <td class="keyword-item">SysEng</td>
+                </tr>
+                <tr>
+                  <td class="keyword-item">Cooperative</td>
+                  <td class="keyword-item">Bash</td>
+                  <td class="keyword-item">TCP/IP</td>
+                  <td class="keyword-item">DevOps</td>
+                </tr>
+                <tr>
+                  <td class="keyword-item">Curious</td>
+                  <td class="keyword-item">C</td>
+                  <td class="keyword-item">AWS</td>
+                  <td class="keyword-item"></td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- Single job history table with 3 columns: dates | header | content-->
       <div id="experience">
         <table id="positions">
           <tr class="position">
             <td class="timeline">
               <div class="dates">present</div>
-              <div class="dash"> -</div>
+              <div class="dash">to</div>
               <div class="dates">2025</div>
             </td>
-            <td class="job-content">
+            <td class="job-header">
               <div class="company">VCA Animal Hospitals</div>
               <div class="group">Solutions Engineering</div>
               <div class="title">Product Manager, QA Lead, System Architect, Engineering Lead</div>
-              <div class="summary">I am part of a skunkworks project to improve VCA employee satisfaction
-with AI. Our current mandate is to learn everything about AI tech and
-how to integrate it with existing systems. I represent the customers
-(our employees) and provide guidence to the engineers based on my
-decades of experience. I'm also doing my own research into LLMs
-specifically and how to use them safely.</div>
+            </td>
+            <td class="job-content">
+              <div class="summary">I am product manager for a skunkworks project to improve VCA employee
+satisfaction with AI. Our current mandate is to learn about AI tech
+and how to integrate it with existing systems. I represent the
+customers (our employees) and provide guidence to the engineers based
+on my decades of experience. I also research LLMs specifically and how
+to use them safely.</div>
               <ul>
-                <li>Will deliver in Q1 2026: An LLM-based text interface in front of ServiceNow to increase employee satisfaction.</li>
+                <li>Will deliver in Q1 2026: An LLM-based text interface in front of ServiceNow and other internal web applications to increase employee satisfaction.</li>
               </ul>
             </td>
           </tr>
           <tr class="position">
             <td class="timeline">
               <div class="dates">2025</div>
-              <div class="dash"> -</div>
+              <div class="dash">to</div>
               <div class="dates">2018</div>
             </td>
-            <td class="job-content">
+            <td class="job-header">
               <div class="company">Self</div>
-              <div class="group">Sebatical</div>
+              <div class="group">Sabbatical</div>
+            </td>
+            <td class="job-content">
               <div class="summary">I had a family loss in 2018 and took some time to focus on my health
 and reset. In 2025 I rejoined the workforce. My personal growth during
-my time off has already payed dividends in my new job.</div>
+my time off has already paid dividends in my new job. I'm developing
+stronger emotional intelligence and communication skills and improving
+my work-life balance practices.</div>
               <ul>
-                <li>Health improvements</li>
-                <li>Improved habits, personal and interpersonal skills</li>
+                <li>Successfully navigated a difficult life transition</li>
+                <li>Returned to workforce with renewed focus and energy</li>
               </ul>
             </td>
           </tr>
           <tr class="position">
             <td class="timeline">
               <div class="dates">2018</div>
-              <div class="dash"> -</div>
+              <div class="dash">to</div>
               <div class="dates">2015</div>
             </td>
-            <td class="job-content">
+            <td class="job-header">
               <div class="company">Amazon.com</div>
               <div class="group">AWS Perimeter Protection</div>
               <div class="title">System Engineer II</div>
-              <div class="summary">      </div>
+            </td>
+            <td class="job-content">
+              <div class="summary">I was the senior engineer in the team responsible for detecting and
+mitigating DDoS attacks in real time. We ran third-party detection and
+mitigation equipment as well as setting up temporary BGP rules to
+re-distribute traffic onto larger links.</div>
               <ul>
                 <li>Co-founded the DDoS Response Team</li>
                 <li>Built DDoS detection stack in four regions</li>
@@ -307,14 +343,20 @@ my time off has already payed dividends in my new job.</div>
           <tr class="position">
             <td class="timeline">
               <div class="dates">2015</div>
-              <div class="dash"> -</div>
+              <div class="dash">to</div>
               <div class="dates">2012</div>
             </td>
-            <td class="job-content">
+            <td class="job-header">
               <div class="company">Amazon.com</div>
               <div class="group">Payments System Operations</div>
               <div class="title">System Engineer II</div>
-              <div class="summary">      </div>
+            </td>
+            <td class="job-content">
+              <div class="summary">My team was responsible for operations in The Payments Secure Zone,
+which is the highest security network in the company. It's where the
+customer's payment instrument data is kept. We worked with third party
+payment processors and internal engineers to keep money flowing both
+into amazon and out to our merchant customers.</div>
               <ul>
                 <li>Supported Mobile Payments project</li>
                 <ul>
@@ -339,13 +381,15 @@ my time off has already payed dividends in my new job.</div>
           <tr class="position">
             <td class="timeline">
               <div class="dates">2012</div>
-              <div class="dash"> -</div>
+              <div class="dash">to</div>
               <div class="dates">2010</div>
             </td>
-            <td class="job-content">
+            <td class="job-header">
               <div class="company">Fred Hutch Cancer Research Center</div>
               <div class="group">SCHARP.org</div>
               <div class="title">DataFax Administrator</div>
+            </td>
+            <td class="job-content">
               <div class="summary">      </div>
               <ul>
                 <li>Performed a major software upgrade</li>
@@ -361,14 +405,16 @@ my time off has already payed dividends in my new job.</div>
           </tr>
           <tr class="position">
             <td class="timeline">
-              <div class="dates">May 2010</div>
-              <div class="dash"> -</div>
-              <div class="dates">May 2002</div>
+              <div class="dates">2010</div>
+              <div class="dash">to</div>
+              <div class="dates">2002</div>
             </td>
-            <td class="job-content">
+            <td class="job-header">
               <div class="company">The Walt Disney Internet Group</div>
               <div class="group">Three different teams</div>
               <div class="title">SysOps Specialist III</div>
+            </td>
+            <td class="job-content">
               <div class="summary">      </div>
               <ul>
                 <li>Supported engineers and content producers of Disney's web properties</li>
@@ -384,13 +430,15 @@ my time off has already payed dividends in my new job.</div>
           <tr class="position">
             <td class="timeline">
               <div class="dates">2002</div>
-              <div class="dash"> -</div>
+              <div class="dash">to</div>
               <div class="dates">1996</div>
             </td>
-            <td class="job-content">
+            <td class="job-header">
               <div class="company">Three small companies</div>
               <div class="group">Santa Cruz, CA</div>
               <div class="title">Tech lead, sysadmin, etc.</div>
+            </td>
+            <td class="job-content">
               <div class="summary">      </div>
               <ul>
                 <li>Desktop/server/network/hardware operations for</li>

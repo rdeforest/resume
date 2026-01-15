@@ -21,35 +21,35 @@ html
 
   body(class=bodyClass)
     div
-      // Header: Name and contact on one line
-      div#contact
-        h2= contact.name
-        span.contact-details
-          a(href=emailUrl) #{contact.email}
-          |  •
-          span= contact.phone
+      // Header: 3-column table with contact | intro | keywords
+      table#header
+        tr
+          td.header-contact
+            div.name= contact.name
+            div.email
+              a(href=emailUrl) #{contact.email}
+            div.phone= contact.phone
 
-      // Intro paragraph
-      if intro
-        div#intro= intro
+          td.header-intro
+            if intro
+              = intro
 
-      // Keywords table - compact
-      div#keywords
-        table#categories
-          thead
-            tr
-              th(colspan=Object.keys(keywords).length) A Few Of My Favorite ...
-            tr
-              each category, categoryName in keywords
-                th.category-name #{categoryName}
-          tbody
-            - var maxLength = Math.max(...Object.values(keywords).map(arr => arr.length))
-            - for (var i = 0; i < maxLength; i++)
-              tr
-                each category, categoryName in keywords
-                  td.keyword-item= category[i] || ''
+          td.header-keywords
+            table#categories
+              thead
+                tr
+                  th(colspan=Object.keys(keywords).length) A Few Of My Favorite ...
+                tr
+                  each category, categoryName in keywords
+                    th.category-name #{categoryName}
+              tbody
+                - var maxLength = Math.max(...Object.values(keywords).map(arr => arr.length))
+                - for (var i = 0; i < maxLength; i++)
+                  tr
+                    each category, categoryName in keywords
+                      td.keyword-item= category[i] || ''
 
-      // Single job history table with timeline sidebar
+      // Single job history table with 3 columns: dates | header | content
       div#experience
         table#positions
           each job in positions
@@ -57,10 +57,10 @@ html
               td.timeline
                 if job.from
                   div.dates #{job.to}
-                  div.dash  -
+                  div.dash to
                   div.dates #{job.from}
 
-              td.job-content
+              td.job-header
                 div.company #{job.company}
 
                 if job.group
@@ -69,6 +69,7 @@ html
                 if job.title
                   div.title #{job.title}
 
+              td.job-content
                 if job.summary
                   div.summary= job.summary
 

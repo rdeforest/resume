@@ -33,16 +33,16 @@ module.exports =
       title:   "Product Manager, QA Lead, System Architect, Engineering Lead"
       from:    "2025", to: "present"
       summary: '''
-        I am part of a skunkworks project to improve VCA employee satisfaction
-        with AI. Our current mandate is to learn everything about AI tech and
-        how to integrate it with existing systems. I represent the customers
-        (our employees) and provide guidence to the engineers based on my
-        decades of experience. I'm also doing my own research into LLMs
-        specifically and how to use them safely.
+        I am product manager for a skunkworks project to improve VCA employee
+        satisfaction with AI. Our current mandate is to learn about AI tech
+        and how to integrate it with existing systems. I represent the
+        customers (our employees) and provide guidence to the engineers based
+        on my decades of experience. I also research LLMs specifically and how
+        to use them safely.
       '''
 
       delivered: [
-        "Will deliver in Q1 2026: An LLM-based text interface in front of ServiceNow to increase employee satisfaction."
+        "Will deliver in Q1 2026: An LLM-based text interface in front of ServiceNow and other internal web applications to increase employee satisfaction."
       ]
     job
       company: "Self"
@@ -68,6 +68,10 @@ module.exports =
       from: "2015", to: "2018"
 
       summary: '''
+        I was the senior engineer in the team responsible for detecting and
+        mitigating DDoS attacks in real time. We ran third-party detection and
+        mitigation equipment as well as setting up temporary BGP rules to
+        re-distribute traffic onto larger links.
       '''
 
       delivered: [
@@ -82,6 +86,11 @@ module.exports =
       from: "2012", to: "2015"
 
       summary: '''
+        My team was responsible for operations in The Payments Secure Zone,
+        which is the highest security network in the company. It's where the
+        customer's payment instrument data is kept. We worked with third party
+        payment processors and internal engineers to keep money flowing both
+        into amazon and out to our merchant customers.
       '''
 
       delivered: [
@@ -124,7 +133,7 @@ module.exports =
       company: "The Walt Disney Internet Group"
       group: "Three different teams"
       title: "SysOps Specialist III"
-      from: "May 2002", to: "May 2010"
+      from: "2002", to: "2010"
 
       summary: '''
       '''

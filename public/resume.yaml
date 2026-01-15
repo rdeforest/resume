@@ -33,34 +33,41 @@ positions:
     from: '2025'
     to: present
     summary: |-
-      I am part of a skunkworks project to improve VCA employee satisfaction
-      with AI. Our current mandate is to learn everything about AI tech and
-      how to integrate it with existing systems. I represent the customers
-      (our employees) and provide guidence to the engineers based on my
-      decades of experience. I'm also doing my own research into LLMs
-      specifically and how to use them safely.
+      I am product manager for a skunkworks project to improve VCA employee
+      satisfaction with AI. Our current mandate is to learn about AI tech
+      and how to integrate it with existing systems. I represent the
+      customers (our employees) and provide guidence to the engineers based
+      on my decades of experience. I also research LLMs specifically and how
+      to use them safely.
     delivered:
       - >-
         Will deliver in Q1 2026: An LLM-based text interface in front of
-        ServiceNow to increase employee satisfaction.
+        ServiceNow and other internal web applications to increase employee
+        satisfaction.
   - company: Self
-    group: Sebatical
+    group: Sabbatical
     title: ''
     from: 2018
     to: 2025
     summary: |-
       I had a family loss in 2018 and took some time to focus on my health
       and reset. In 2025 I rejoined the workforce. My personal growth during
-      my time off has already payed dividends in my new job.
+      my time off has already paid dividends in my new job. I'm developing
+      stronger emotional intelligence and communication skills and improving
+      my work-life balance practices.
     delivered:
-      - Health improvements
-      - Improved habits, personal and interpersonal skills
+      - Successfully navigated a difficult life transition
+      - Returned to workforce with renewed focus and energy
   - company: Amazon.com
     group: AWS Perimeter Protection
     title: System Engineer II
     from: '2015'
     to: '2018'
-    summary: '      '
+    summary: |-
+      I was the senior engineer in the team responsible for detecting and
+      mitigating DDoS attacks in real time. We ran third-party detection and
+      mitigation equipment as well as setting up temporary BGP rules to
+      re-distribute traffic onto larger links.
     delivered:
       - Co-founded the DDoS Response Team
       - Built DDoS detection stack in four regions
@@ -71,7 +78,12 @@ positions:
     title: System Engineer II
     from: '2012'
     to: '2015'
-    summary: '      '
+    summary: |-
+      My team was responsible for operations in The Payments Secure Zone,
+      which is the highest security network in the company. It's where the
+      customer's payment instrument data is kept. We worked with third party
+      payment processors and internal engineers to keep money flowing both
+      into amazon and out to our merchant customers.
     delivered:
       - Supported Mobile Payments project
       - - Bake-off and recommendation for DUKPT Hardware Security Modules
@@ -100,8 +112,8 @@ positions:
   - company: The Walt Disney Internet Group
     group: Three different teams
     title: SysOps Specialist III
-    from: May 2002
-    to: May 2010
+    from: '2002'
+    to: '2010'
     summary: '      '
     delivered:
       - Supported engineers and content producers of Disney's web properties
