@@ -1,4 +1,4 @@
-{Document, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, AlignmentType, HeadingLevel, BorderStyle, TableBorders} = require 'docx'
+{Document, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, AlignmentType, HeadingLevel, BorderStyle, TableBorders, LevelFormat} = require 'docx'
 {Packer} = require 'docx'
 
 # Build contact column (name, email, phone on separate lines)
@@ -163,27 +163,25 @@ buildKeywordsTable = (keywords) ->
       type: WidthType.DXA
 
 # Build recursive list (for job deliverables)
-# Just use simple hyphens for now since docx bullets aren't working
+# Using proper DOCX numbering with reference to numbering.xml
 buildList = (items, level = 0) ->
   result = []
-  indent_base = 180  # Smaller indent for compact look
   for item in items or []
     if typeof item is 'string'
-      # Use hyphen prefix instead of bullets
-      prefix = if level is 0 then '- ' else '  - '
       result.push new Paragraph
         children: [
           new TextRun
-            text: "#{prefix}#{item}"
+            text: item
             size: 14  # 7pt = 14 half-points
             font: 'FreeSans'
         ]
+        numbering:
+          reference: 'resume-bullets'
+          level: level
         spacing:
           before: 0
           after: 0
           line: 240  # 1.0 line spacing (240 = 100%)
-        indent:
-          left: level * indent_base
     else
       result = result.concat buildList item, level + 1
   result
@@ -319,7 +317,45 @@ module.exports = (resumé) ->
   # Single positions table with all jobs
   children.push buildPositionsTable positions
 
+  # Create proper numbering definition following OOXML spec
+  # Using Unicode bullet (•) with Arial as recommended for cross-app compatibility
   doc = new Document
+    numbering:
+      config: [
+        {
+          reference: 'resume-bullets'
+          levels: [
+            {
+              level: 0
+              format: LevelFormat.BULLET
+              text: '•'
+              alignment: AlignmentType.LEFT
+              style:
+                paragraph:
+                  indent:
+                    left: 360   # 0.25 inch = 360 twips (compact)
+                    hanging: 360
+                run:
+                  font: 'Arial'
+                  size: 20  # 10pt for bullet
+            }
+            {
+              level: 1
+              format: LevelFormat.BULLET
+              text: '•'
+              alignment: AlignmentType.LEFT
+              style:
+                paragraph:
+                  indent:
+                    left: 720   # 0.5 inch = 720 twips
+                    hanging: 360
+                run:
+                  font: 'Arial'
+                  size: 20
+            }
+          ]
+        }
+      ]
     sections: [{children}]
 
   # Return promise that resolves to Buffer
