@@ -1,13 +1,11 @@
 fs           = require 'fs'
-path         = require 'path'
-{spawn}      = require 'child_process'
 
 moment       = require 'moment'
 
 YAML         = require 'js-yaml'
 pug          = require 'pug'
-pdf          = require 'html-to-pdf-pup'
 buildDocx    = require './docx-builder'
+buildPdf     = require './pdf-builder'
 
 date     = (t) -> moment(t).format 'YYYY-MM-DD'
 read     = (f) -> fs.readFileSync(f).toString()
@@ -29,32 +27,6 @@ html = (resumé) ->
 
   pug.render template(), pugLocals
 
-htmlToDocx = (htmlContent) ->
-  new Promise (resolve, reject) ->
-    args = ['-f', 'html', '-t', 'docx']
-
-    # Use reference doc for styling if it exists
-    refDoc = path.resolve __dirname, '..', 'data', 'reference.docx'
-    if fs.existsSync refDoc
-      args.push '--reference-doc', refDoc
-
-    pandoc = spawn 'pandoc', args
-
-    chunks = []
-    errors = []
-
-    pandoc.stdout.on 'data', (chunk) -> chunks.push chunk
-    pandoc.stderr.on 'data', (chunk) -> errors.push chunk
-
-    pandoc.on 'close', (code) ->
-      if code is 0
-        resolve Buffer.concat chunks
-      else
-        reject new Error "pandoc failed: #{Buffer.concat(errors).toString()}"
-
-    pandoc.stdin.write htmlContent
-    pandoc.stdin.end()
-
 module.exports =
   formats:
     yaml: name: 'YAML', converter: YAML.dump
@@ -64,12 +36,7 @@ module.exports =
       name: 'PDF'
       type: 'application/pdf'
       extension: 'pdf'
-      converter: (resumé) ->
-        pdf.create_pdf html resumé
-        # new Promise (resolve, reject) ->
-        #   pdf.create html resumé
-        #      .toBuffer (err, buffer) ->
-        #        if err then reject err else resolve buffer
+      converter: buildPdf
 
     docx:
       name: 'DOCX'

@@ -8,12 +8,12 @@
   "dependencies": {
     "coffeescript": "*",
     "debug": "*",
-    "docx": "^9.5.1",
+    "docx": "*",
     "express": "*",
-    "html-to-pdf-pup": "^2.2.0",
     "js-yaml": "*",
     "moment": "*",
     "morgan": "*",
+    "pdfmake": "^0.3.11",
     "pug": "*"
   }
 }
