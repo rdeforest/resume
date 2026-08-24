@@ -7,14 +7,13 @@ updates?
 
 # How to use it
 
-If you just want to see my resumé, choose a format:
-- [PDF](https://github.com/rdeforest/resume/blob/master/public/resume.pdf)
-- [HTML](http://htmlpreview.github.io/?https://github.com/rdeforest/resume/blob/master/public/resume.html)
+If you just want to read it: <https://defore.st/resume/>
 
-Or download them:
-- [PDF](https://github.com/rdeforest/resume/raw/master/public/resume.pdf)
-- [HTML](https://github.com/rdeforest/resume/raw/master/public/resume.html)
-- [DOCX](https://github.com/rdeforest/resume/raw/master/public/resume.docx)
+Or download a copy:
+- [PDF](https://defore.st/resume/resume.pdf)
+- [DOCX](https://defore.st/resume/resume.docx)
+- [JSON](https://defore.st/resume/resume.json)
+- [YAML](https://defore.st/resume/resume.yaml)
 
 If you want to tinker with it:
 
@@ -25,10 +24,24 @@ If you want to tinker with it:
 
 The results are available at http://localhost:3000
 
+## Commands
+
+Flags come *before* the task name — `cake -w regen`, not `cake regen -w`.
+
+| Command | What it does |
+| --- | --- |
+| `cake run` | Serve on localhost:3000 |
+| `cake regen` | Write every format into `public/` |
+| `cake test` | Run the test suite |
+| `cake -n deploy` | Show what deploying would upload |
+| `cake deploy` | Publish to S3 and invalidate CloudFront |
+
+Add `-w` to `run`, `regen`, or `test` to re-run on file changes.
+
 # Upcoming work
 
-- Fix 'cake regen'
-- Add tests and make them pass
+- Collapse whitespace in the DOCX builder the way the PDF builder does
+- Decide whether HTML should be generated directly too, or stay on pug
 - Add more formats
   - Markdown
   - LaTeX?

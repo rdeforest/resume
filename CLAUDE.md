@@ -8,23 +8,44 @@ A resume generation system built in CoffeeScript that converts structured data (
 
 ## Key Commands
 
+**Flags go before the task name.** Cake's option parser only consumes switches
+ahead of the task, so `cake regen -w` reads `-w` as a second task name and dies
+with "No such task: -w" *after* the first task has already started.
+
 ### Development
 ```bash
 cake run                    # Start HTTP server on localhost:3000
-cake run -w                 # Start server with file watching
+cake -w run                 # Start server with file watching
 npm start                   # Alternative: start via npm (uses bin/www)
 ```
 
 ### Regeneration
 ```bash
-cake regen                  # Regenerate static HTML from data
-cake regen -w               # Regenerate on file changes with watch mode
+cake regen                  # Regenerate every format into public/
+cake -w regen               # Regenerate on file changes with watch mode
 ```
+
+Writes `public/{project}.{html,pdf,docx,json,yaml}`. HTML goes through
+`Project` (pug); the rest go through `lib/generate.coffee`, which renders each
+converter in `lib/formats.coffee` and lands it with a tmp+rename.
 
 ### Testing
 ```bash
-cake test                   # Run tests (currently not implemented)
+cake test                   # Run the suite
+npm test                    # Same thing, without cake
+cake -w test                # Re-run on change
 ```
+
+Tests use node's built-in `node:test` runner (no test framework dependency),
+written in CoffeeScript and loaded via `--require coffeescript/register`.
+
+### Deployment
+```bash
+cake -n deploy              # Show what would be uploaded, change nothing
+cake deploy                 # Upload to S3 and invalidate CloudFront
+```
+
+Reads the `deploy:` block in `config.yaml`. See "Deployment" below.
 
 ## Architecture
 
@@ -44,11 +65,33 @@ Resume data lives in `data/projects/` as CoffeeScript modules that:
 ### Format Conversion (lib/formats.coffee)
 Converters transform resume data into formats:
 - **html**: Pug template rendering with config metadata
-- **pdf**: HTML → PDF via html-to-pdf-pup
-- **docx**: HTML → DOCX via html-docx-js
+- **pdf**: Built directly from the data by `lib/pdf-builder.coffee` (pdfmake)
+- **docx**: Built directly from the data by `lib/docx-builder.coffee` (docx)
 - **yaml/json**: Direct serialization
 
 All converters receive resume object and return converted output (possibly as Promise).
+
+The visual formats no longer derive from HTML. Every HTML→X converter tried
+(html-docx-js altchunks, pandoc, reference docs) lost the formatting that makes
+the layout readable, and the two libraries doing the conversion went
+unmaintained — `html-docx-js` first, then `html-to-pdf-pup`, which pulled in a
+vulnerable `extract-zip`. Each visual format is now built from the résumé data
+directly. `DOCX_MIGRATION.md` records the reasoning in full; it applies equally
+to the PDF.
+
+Both builders expose their intermediate document description for testing —
+`pdf-builder.definition(resumé)` returns the pdfmake docDefinition, which is
+what the tests assert against rather than the rendered bytes.
+
+**Fonts:** the theme CSS and DOCX ask for FreeSans. The PDF uses PDFKit's
+built-in Helvetica, which FreeSans is a metric clone of, so nothing has to be
+embedded or shipped and the output matches on machines without FreeSans.
+
+**Whitespace:** heredocs in the data keep their source line breaks, and blanked
+fields arrive as whitespace-only strings (see `job()` below). `pdf-builder`'s
+`prose()` collapses both, and absence is decided on the *collapsed* value —
+testing the raw string treats `"      "` as present and emits an empty
+paragraph. `docx-builder` does not yet do this.
 
 ### Project Regeneration (lib/project.coffee)
 The `Project` class:
@@ -59,10 +102,15 @@ The `Project` class:
 
 ### Task System (lib/task.coffee)
 Wrapper around CoffeeScript's Cakefile task/option:
-- Tasks defined in `tasks/*.coffee` as modules exporting Task instances
-- `Cakefile` loads tasks from `tasks/` directory (currently filtered to only load `run.coffee`)
+- Tasks defined in `tasks/*.coffee` as modules exporting `(Task) -> new Task {...}`
+- `Cakefile` loads every `*.coffee` in `tasks/`
 - Options support defaults from environment variables or fallback values
 - Tasks extend EventEmitter for lifecycle events
+
+### Settings (lib/settings.coffee)
+Shared by `regen` and `deploy`. Applies defaults, loads `config.yaml`, derives
+the paths that weren't given, then resolves every path key against `ENVROOT`
+so tasks work from any working directory.
 
 ### Web Server
 - **Express app** (app.coffee): Sets up middleware, routes, error handling
@@ -91,14 +139,54 @@ module.exports = ({byCommaSpace, job}) ->
   ]
 ```
 
+`job()` is `prevWithChanges()`: any field a position doesn't mention is
+inherited from the position before it. To *clear* an inherited field you must
+say so explicitly — either `summary: undefined` (deletes it) or a
+whitespace-only heredoc, which is what the data currently uses in three places.
+Renderers therefore cannot treat a field's mere presence as meaningful.
+
 ## Theme Structure
 
 Themes in `data/themes/{name}/`:
 - `main.pug` - Pug template receiving resume data + config as locals
 - Templates have access to: contact, intro, keywords, positions, updated, generated
 
+## Deployment
+
+The published résumé lives at <https://defore.st/resume/>.
+
+```
+defore.st (DNS)
+  -> CloudFront distribution EEK3E034N69I5
+       origin: defore.st.s3-website-us-west-2.amazonaws.com   <- website endpoint
+  -> s3://defore.st/resume/
+```
+
+`cake deploy` uploads `public/{project}.html` as `resume/index.html`, uploads
+the other formats under their own names, sets an explicit Content-Type on each
+(S3 otherwise serves `application/octet-stream` and browsers download rather
+than render), and invalidates `/resume/*`.
+
+**Why the website endpoint matters.** The origin must be the bucket's *website*
+endpoint (`...s3-website-us-west-2...`), not its REST endpoint
+(`...s3.us-west-2...`). Only the website endpoint applies the bucket's
+`IndexDocument`, which is what resolves a bare `/resume/` to `index.html` and
+redirects `/resume` to `/resume/`. With the REST endpoint, CloudFront's
+`DefaultRootObject` covers only `/`, so every subdirectory 403s. The
+distribution was pointed at the REST endpoint until 2026-08-24; that was the
+cause of `defore.st/resume` returning AccessDenied.
+
+The bucket is public-read by policy and has no public-access block, which the
+website endpoint requires (it can't use OAC/OAI). If you ever want the bucket
+private, the origin has to go back to REST and a CloudFront Function must do
+the `/` → `/index.html` rewrite instead.
+
 ## Known Issues
 
-- `cake regen` currently has issues (mentioned in README "Upcoming work")
-- Cakefile filters tasks to only load `run.coffee` (line 19)
-- Test task exists but is empty
+- `docx-builder` doesn't collapse whitespace the way `pdf-builder` does: heredoc
+  newlines land literally inside `<w:t>` (harmless — OOXML normalizes them) and
+  the three whitespace-only summaries each produce an empty paragraph (visible).
+- `routes/resume.coffee` sets `Content-Disposition: attachment` for any format
+  carrying a `type`, so adding a `type` to html/json/yaml there would turn them
+  into downloads. That's why `tasks/deploy.coffee` keeps its own web types.
+- `public/docx2.pdf` and `public/resume-edited.docx` are stray artifacts.
