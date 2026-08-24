@@ -1,6 +1,8 @@
 #!/bin/bash
 
+# tasks/regen.coffee is a cake task module now, so it can't be run directly.
+# cake finds its Cakefile by walking up from cwd, and wants flags ahead of the
+# task name, hence the cd and the "$@" placement.
 export ENVROOT=$(dirname $(dirname $(realpath $0)))
-$ENVROOT/node_modules/coffeescript/bin/coffee \
-  $ENVROOT/tasks/regen.coffee "$@"
-
+cd "$ENVROOT" || exit 1
+exec "$ENVROOT/node_modules/.bin/cake" "$@" regen
