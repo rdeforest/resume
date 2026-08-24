@@ -1,13 +1,20 @@
 {Document, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, AlignmentType, HeadingLevel, BorderStyle, TableBorders, LevelFormat} = require 'docx'
 {Packer} = require 'docx'
 
+# Heredocs in the data keep their source line breaks, and blanked-out fields
+# arrive as whitespace-only strings (the data uses those to stop
+# prevWithChanges carrying a value forward). Collapsing decides absence, so a
+# blanked field yields no paragraph rather than an empty one. String() also
+# rescues numeric dates -- TextRun renders a number as an empty <w:t/>.
+prose = (s) -> String(s ? '').replace(/\s+/g, ' ').trim()
+
 # Build contact column (name, email, phone on separate lines)
 buildContactColumn = (contact) ->
   [
     new Paragraph
       children: [
         new TextRun
-          text: contact.name
+          text: prose contact.name
           bold: true
           size: 24  # 12pt = 24 half-points
           font: 'FreeSans'
@@ -16,7 +23,7 @@ buildContactColumn = (contact) ->
     new Paragraph
       children: [
         new TextRun
-          text: contact.email
+          text: prose contact.email
           size: 18  # 9pt = 18 half-points
           font: 'FreeSans'
       ]
@@ -24,7 +31,7 @@ buildContactColumn = (contact) ->
     new Paragraph
       children: [
         new TextRun
-          text: contact.phone
+          text: prose contact.phone
           size: 18  # 9pt = 18 half-points
           font: 'FreeSans'
       ]
@@ -32,12 +39,12 @@ buildContactColumn = (contact) ->
 
 # Build intro column
 buildIntroColumn = (intro) ->
-  if intro
+  if text = prose intro
     [
       new Paragraph
         children: [
           new TextRun
-            text: intro
+            text: text
             size: 18  # 9pt = 18 half-points
             font: 'FreeSans'
         ]
@@ -131,7 +138,7 @@ buildKeywordsTable = (keywords) ->
   dataRows = for i in [0...maxLength]
     new TableRow
       children: categories.map (cat, idx) ->
-        text = keywords[cat][i] or ''
+        text = prose keywords[cat][i]
         new TableCell
           children: [
             new Paragraph
@@ -171,7 +178,7 @@ buildList = (items, level = 0) ->
       result.push new Paragraph
         children: [
           new TextRun
-            text: item
+            text: prose item
             size: 14  # 7pt = 14 half-points
             font: 'FreeSans'
         ]
@@ -188,35 +195,22 @@ buildList = (items, level = 0) ->
 
 # Build a single position row for the positions table (3 columns)
 buildPositionRow = (job) ->
+  [company, group, title] = (prose job[field] for field in ['company', 'group', 'title'])
+  [from,    to]           = (prose job[field] for field in ['from', 'to'])
+  summary                 = prose job.summary
+
   # Timeline column (reversed: to - from, centered)
   timeline = []
-  if job.from
-    timeline.push new Paragraph
-      children: [
-        new TextRun
-          text: job.to
-          size: 18  # 9pt = 18 half-points
-          font: 'FreeSans'
-      ]
-      alignment: AlignmentType.CENTER
-
-    timeline.push new Paragraph
-      children: [
-        new TextRun
-          text: "to"
-          size: 18  # 9pt = 18 half-points
-          font: 'FreeSans'
-      ]
-      alignment: AlignmentType.CENTER
-
-    timeline.push new Paragraph
-      children: [
-        new TextRun
-          text: job.from
-          size: 18  # 9pt = 18 half-points
-          font: 'FreeSans'
-      ]
-      alignment: AlignmentType.CENTER
+  if from
+    timeline = [to, 'to', from].map (line) ->
+      new Paragraph
+        children: [
+          new TextRun
+            text: line
+            size: 18  # 9pt = 18 half-points
+            font: 'FreeSans'
+        ]
+        alignment: AlignmentType.CENTER
 
   # Job header column (company, group, title)
   header = []
@@ -224,26 +218,26 @@ buildPositionRow = (job) ->
   header.push new Paragraph
     children: [
       new TextRun
-        text: job.company
+        text: company
         bold: true
         size: 20  # 10pt = 20 half-points
         font: 'FreeSans'
     ]
 
-  if job.group
+  if group
     header.push new Paragraph
       children: [
         new TextRun
-          text: job.group
+          text: group
           size: 18  # 9pt = 18 half-points
           font: 'FreeSans'
       ]
 
-  if job.title
+  if title
     header.push new Paragraph
       children: [
         new TextRun
-          text: job.title
+          text: title
           italics: true
           size: 18  # 9pt = 18 half-points
           font: 'FreeSans'
@@ -252,17 +246,17 @@ buildPositionRow = (job) ->
   # Job content column (summary and delivered)
   content = []
 
-  if job.summary
+  if summary
     content.push new Paragraph
       children: [
         new TextRun
-          text: job.summary
+          text: summary
           size: 14  # 7pt = 14 half-points
           font: 'FreeSans'
       ]
 
-  if job.delivered
-    if job.summary
+  if job.delivered?.length
+    if summary
       content.push new Paragraph
         text: ""  # Spacing before bullets
 
