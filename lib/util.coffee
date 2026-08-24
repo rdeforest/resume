@@ -1,12 +1,18 @@
+fs = require 'fs'
+
+# Watch mode can catch a source file mid-rewrite, so a read gets a couple more
+# chances before the failure propagates.
+read = (file, attempts = 3) ->
+  for attempt in [1..attempts]
+    try
+      return fs.readFileSync file, 'utf8'
+    catch e
+      throw e if attempt is attempts
+  return
+
 module.exports =
 makeVerbs = (stdout) ->
-  cat: (files) ->
-    files
-      .map (f) ->
-        for retry in [3..1]
-          try
-            return fs.readFileSync f
-      .join ''
+  cat: (files) -> files.map(read).join ''
 
   echo: (s) -> stdout.write s
 

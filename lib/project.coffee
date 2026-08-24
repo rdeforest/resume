@@ -27,7 +27,9 @@ class Project
     contents = fs.readFileSync @_dataFile, 'utf8'
     switch
       when @_dataFile.endsWith 'coffee'
-        dataModule = require path.resolve @_dataFile
+        dataFile   = require.resolve path.resolve @_dataFile
+        delete require.cache[dataFile]   # watch mode must see edits, not the cache
+        dataModule = require dataFile
         builder    = require './builder'
         if 'function' is typeof dataModule
           dataModule builder
