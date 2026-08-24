@@ -20,3 +20,12 @@ destination:  public/resume.html
 # And these are derived from 'theme'
 themeDir:     data/themes/table-based
 template:     data/themes/table-based/main.pug
+
+# Where 'cake deploy' publishes. The bucket serves through CloudFront, whose
+# origin is the bucket's *website* endpoint -- that is what makes a bare
+# https://defore.st/resume/ resolve to index.html.
+deploy:
+  bucket:       defore.st
+  prefix:       resume
+  distribution: EEK3E034N69I5
+  cacheControl: 'public, max-age=300'
