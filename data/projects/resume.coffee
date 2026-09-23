@@ -31,14 +31,16 @@ module.exports =
       company: "VCA Animal Hospitals"
       group:   "Solutions Engineering"
       title:   "Product Manager, QA Lead, System Architect, Engineering Lead"
-      from:    "2025", to: "present"
+      from:    "May 2025", to: "August 2026"
       summary: '''
-        I am product manager for a skunkworks project to improve VCA employee
-        satisfaction with AI. Our current mandate is to learn about AI tech
-        and how to integrate it with existing systems. I represent the
-        customers (our employees) and provide guidence to the engineers based
-        on my decades of experience. I also research LLMs specifically and how
-        to use them safely.
+        I was product manager for a skunkworks project to use AI tech to
+        improve VCA employee satisfaction. Our mandate was to learn about AI
+        tech and how to integrate it with existing systems. I represent the
+        customers (VCA employees) and provided guidence to the engineers based
+        on my decades of experience. I also researched LLMs specifically and
+        how to use them safely. In the end we delivered a working prototype
+        and a QA framework including a user story, test and issue tracking
+        app.
       '''
 
       delivered: [
