@@ -32,12 +32,28 @@
   },
   "positions": [
     {
+      "company": "de Forest Technical",
+      "group": "everything (it's just me)",
+      "title": "grand poobah",
+      "from": "September 2026",
+      "to": "present",
+      "summary": "I'm spinning up an indie game development project. More to come...",
+      "delivered": [
+        "Desktop/server/network/hardware operations for",
+        [
+          "Got.net, an ISP with 2500 dial-up and web hosting customers",
+          "Coast Commercial Bank with six branches",
+          "Tapestry.net, a dot-com startup with 60 employees"
+        ]
+      ]
+    },
+    {
       "company": "VCA Animal Hospitals",
       "group": "Solutions Engineering",
       "title": "Product Manager, QA Lead, System Architect, Engineering Lead",
-      "from": "2025",
-      "to": "present",
-      "summary": "I am product manager for a skunkworks project to improve VCA employee\nsatisfaction with AI. Our current mandate is to learn about AI tech\nand how to integrate it with existing systems. I represent the\ncustomers (our employees) and provide guidence to the engineers based\non my decades of experience. I also research LLMs specifically and how\nto use them safely.",
+      "from": "May 2025",
+      "to": "August 2026",
+      "summary": "I was product manager for a skunkworks project to use AI tech to\nimprove VCA employee satisfaction. Our mandate was to learn about AI\ntech and how to integrate it with existing systems. I represent the\ncustomers (VCA employees) and provided guidence to the engineers based\non my decades of experience. I also researched LLMs specifically and\nhow to use them safely. In the end we delivered a working prototype\nand a QA framework including a user story, test and issue tracking\napp.",
       "delivered": [
         "Will deliver in Q1 2026: An LLM-based text interface in front of ServiceNow and other internal web applications to increase employee satisfaction."
       ]

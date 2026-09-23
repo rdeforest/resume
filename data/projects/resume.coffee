@@ -28,6 +28,15 @@ module.exports =
 
   positions: [
     job
+      company: "de Forest Technical"
+      group:   "everything (it's just me)"
+      title:   "grand poobah"
+      from:    "September 2026", to: "present"
+      summary: '''
+        I'm spinning up an indie game development project. More to come...
+      '''
+
+    job
       company: "VCA Animal Hospitals"
       group:   "Solutions Engineering"
       title:   "Product Manager, QA Lead, System Architect, Engineering Lead"
